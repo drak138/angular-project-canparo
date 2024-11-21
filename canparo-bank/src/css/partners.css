@@ -1,0 +1,32 @@
+.partners-hero{
+    background: url("/public/images/sea-banking-meta.png")
+    no-repeat center center/cover;
+    background-size: cover;
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 54px;
+    padding-top: 28px;
+}
+.partners-article{
+    max-width: 624.8px;
+    background-color: orange;
+    width: 55vw;
+    padding: 2rem;
+    border: white solid 4px;
+}
+.partners-article img{
+    margin: auto;
+    display: block;
+    margin-bottom: 12px;
+    width: 130px;
+}
+.partners-article p{
+    font-size: 1.2rem;
+}
+.partners-article h2{
+    margin: 15px 0;
+    font-size: 1.2rem;
+}

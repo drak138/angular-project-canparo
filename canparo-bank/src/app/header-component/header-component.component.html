@@ -1,0 +1,21 @@
+<header>
+    @if(isLogged){
+        <nav>
+            <ul>
+                <li><a class="navButtons" href="/card/balance">Моят баланс</a></li>
+                <li><a class="navButtons" href="/card/transfer">Превод</a></li>
+                <li><a class="navButtons" href="/card/myCards">Мойте карти</a></li>
+                <li><a class="navButtons" href="/card/bills">Сметки</a></li>
+            </ul>
+            <a class="navButtons" style="padding-right: 1rem;" href="/auth/myAccount">Моят профил</a>
+    </nav>
+    }@else{<nav>
+        <ul>
+            <li><a class="navButtons" href="/about">За нас</a></li>
+            <li><a class="navButtons" href="/about/partners">Нашите партньори</a></li>
+            <li><a class="navButtons" href="/about/contacts">Контакти</a></li>
+            <li><a class="navButtons" href="/auth/register">Регистрация</a></li>
+            <li><a class="navButtons" href="/auth/login">Влизане</a></li>
+        </ul>
+        </nav>}
+</header>

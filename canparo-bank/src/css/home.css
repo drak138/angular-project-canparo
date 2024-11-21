@@ -1,0 +1,153 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+}
+html, body {
+  height: 100%;
+    background: none;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    line-height: 1.6;
+  }
+main{
+  height: 100%;
+}
+input{
+  color: black;
+}
+select{
+  color: black;
+}
+textarea{
+    resize: none;
+}
+button{
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+a{
+    text-decoration: none;
+}
+  header{
+    padding: 20px 0;
+    text-align: center;
+  }
+  header nav {
+    background-color:orange;
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+  }
+.container{
+    background-color: orange;
+    width: 80%;
+    margin: 0 auto;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  nav ul li:hover{
+    transform: scale(1.1);
+  }
+  
+  .navButtons {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  .navButtons:hover {
+    color: rgb(118, 118, 118);
+    transform: scale(1.1);
+  }
+.slides ul{
+  scroll-behavior: smooth;
+    padding: 0;
+    list-style: none
+}
+.slides ul::-webkit-scrollbar {
+    display: none;
+  }
+  .credit-card{
+    background: url("https://static.vecteezy.com/system/resources/previews/023/221/109/non_2x/banking-and-finance-concept-digital-connect-system-financial-and-banking-technology-with-integrated-circles-glowing-line-icons-and-on-blue-background-design-vector.jpg")
+    no-repeat center center/cover;
+    background-size: auto;
+    padding: 265px 0 200px;
+    color: #fff;
+    flex: 0 0 auto;
+}
+.credit-card div{
+    padding-left: 2rem;
+}
+
+.card-info h2{
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+.card-info p{
+    font-size: 1.2rem;
+    margin: 0 0 2rem;
+    
+}
+  .crd-btn{
+    color: #fff; 
+    text-decoration: none;
+    background-color: orange;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  .bill-card{
+    background: url("https://cdn.hswstatic.com/gif/paying-bills-original.jpg")
+    no-repeat center center/cover;
+    background-size: cover;
+    padding: 265px 0 200px;
+    color: #fff;
+    flex: 0 0 auto;
+}
+.bill-card div{
+    padding-left: 2rem;
+}
+.about-card{
+    background: url("https://www.oncourselearning.com/media/magefan_blog/Leadership_Management-scaled.jpg")
+    no-repeat center center/cover;
+    background-size: cover;
+    padding: 265px 0 200px;
+    color: #fff;
+    flex: 0 0 auto;
+}
+.about-card div{
+    padding-left: 2rem;
+}
+
+  footer {
+    text-align: center;
+    padding: 10px 0;
+    background: orange;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+  
+  footer p {
+    margin: 0;
+  }

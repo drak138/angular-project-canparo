@@ -1,0 +1,85 @@
+.cards-hero{
+    background: url("/public/images/DALL·E\ 2024-11-02\ 16.07.56\ -\ Create\ a\ professional\ background\ image\ concept\ for\ Canparo\ Bank\ featuring\ an\ orange\ theme.\ The\ image\ should\ use\ varying\ shades\ of\ orange\ and\ complemen.webp")
+    no-repeat center center/cover;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 34px;
+    padding-top: 28px;
+}
+.card-container{
+    justify-content: space-evenly;
+    min-width: 428.33px;
+    max-width: 428.33px;
+    background-color: orange;
+    width: 35vw;
+    padding: 1rem;
+    border: white solid 4px;
+    display: flex;
+    gap: 10px;
+    }
+.cards-list{
+    padding-right: 10px;
+    max-height: 405px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cards-list::-webkit-scrollbar {
+    width: 8px;
+}
+.cards-list::-webkit-scrollbar-thumb {
+    background-color: white; /* Customize the color */
+    border-radius: 4px;
+}
+.card{
+    width: 259.12px;
+    grid-column-gap: 10px;
+    padding: 10px;
+    display: grid;
+    border-radius: 15px;
+    background: white;
+}
+.card img{
+    width: 80px;
+}
+.card span{
+    grid-column-start: 2;
+    grid-row-start: 1;
+    height: fit-content;
+    align-content: center;
+    color: black;
+}
+.card p{
+    color: black;
+}
+.card .card-number{
+    align-content: center;
+    grid-row-start: 1;
+    grid-column-start: none;
+}
+.card .card-status{
+    grid-column-start: 2;
+    color: green;
+}
+.card .deactivated{
+    color: red;
+}
+.create-card{
+    width: min-content;
+    font-size: 1.2rem;
+    text-align: center;
+    align-self: center;
+    padding: 2px;
+    height: fit-content;
+    color: green;
+    border-radius: 6px;
+    background: white;
+}
+

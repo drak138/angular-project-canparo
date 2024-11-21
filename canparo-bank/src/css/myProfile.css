@@ -1,0 +1,21 @@
+.profile-container{
+    justify-content: space-evenly;
+    min-width: 428.33px;
+    max-width: 428.33px;
+    background-color: orange;
+    width: 35vw;
+    padding: 1rem;
+    border: white solid 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.delete-btn{
+    font-size: 1.2rem;
+    color: red;
+}
+.changePass{
+    font-size: 1.2rem;
+    color: green;
+}

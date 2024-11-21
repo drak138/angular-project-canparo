@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('./css/login.css');
+@import url('./css/register.css');
+@import url('./css/home.css');
+@import url('./css/about.css');
+@import url('./css/partners.css');
+@import url('./css/contacts.css');
+@import url('./css/balance.css');
+@import url('./css/transfer.css');
+@import url('./css/cards.css');
+@import url('./css/createCard.css');
+@import url('./css/cardDetails.css');
+@import url('./css/bills.css');
+@import url('./css/createBill.css');
+@import url('./css/myProfile.css');
+@import url('./css/changePass.css')

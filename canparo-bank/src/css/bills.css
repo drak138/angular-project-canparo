@@ -1,0 +1,49 @@
+.bills-container{
+    font-size: 20px;
+    background: orange;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    height: fit-content;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+.register-bill{
+    align-self: end;
+    padding: 3px;
+    color: green;
+    width: fit-content;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 10px;
+}
+.bills-list{
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 336px;
+}
+.bill{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 3px;
+    border-radius: 6px;
+}
+.bills-list::-webkit-scrollbar {
+    width: 8px;
+}
+.bills-list::-webkit-scrollbar-thumb {
+    background-color: white; /* Customize the color */
+    border-radius: 4px;
+}
+.bill span{
+    color: black;
+}
+.bill a{
+    color: red;
+}
