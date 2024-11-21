@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   templateUrl: './header-component.component.html'
 })
 export class HeaderComponent {
-isLogged:boolean=true
+isLogged:boolean=false
 }
