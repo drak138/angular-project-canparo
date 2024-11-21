@@ -1,0 +1,85 @@
+<main>
+    <div class="hero-container">
+      <section class="balance-hero">
+        <section class="balance">
+          <div class="balance-container">
+            <h2>РАЗПЛАЩАТЕЛНА СМЕТКА:</h2>
+            <p>NАЛИЧНОСТ: <span class="card-balance">57.90</span> <span>BGN</span></p>
+            <p>IBAN: <span class="card-iban">{{ iban }}</span></p>
+          </div>
+          <div class="choose-account">
+            <form method="GET">
+              <label for="account-options">ИЗБЕРЕТЕ ВАШАТА СМЕТКА</label>
+              <select name="account-options" class="account-options" id="account-options">
+                <option *ngFor="let account of accounts" [value]="account.iban">
+                  {{ account.name }}; {{ account.iban }}; {{ account.balance }}
+                </option>
+              </select>
+            </form>
+          </div>
+          <div class="card-actions">
+            <a routerLink="/card/transfer">
+              <i style="font-size: 40px" class="fa-solid fa-money-bill-transfer"></i>
+              <p>Създаване на превод</p>
+            </a>
+            <div class="card-share">
+              <button
+                class="share-button"
+                id="shareButton"
+                title="Share IBAN"
+                (click)="onShareButtonClick($event)"
+              >
+                <i style="font-size: 40px;" class="fa-solid fa-share"></i>
+              </button>
+              <div
+                class="share-options"
+                id="shareOptions"
+                [style.display]="showShareOptions ? 'block' : 'none'"
+              >
+                <button
+                  class="whatsapp-button"
+                  id="whatsappShare"
+                  (click)="shareViaWhatsApp()"
+                >
+                  <i style="font-size: 20px;" class="fa-brands fa-whatsapp"></i>
+                  WhatsApp
+                </button>
+                <button
+                  class="messenger-button"
+                  id="messengerShare"
+                  (click)="shareViaMessenger()"
+                >
+                  <i class="fa-brands fa-facebook-messenger"></i>
+                  Messenger
+                </button>
+                <button
+                  class="copy-button"
+                  id="copyButton"
+                  (click)="copyIban($event)"
+                >
+                  <i class="fa-solid fa-copy"></i> Copy IBAN
+                </button>
+              </div>
+              <div id="copiedText" class="copied-text" *ngIf="copied" [style.left.px]="mouseX + 10"
+              [style.top.px]="mouseY">
+                Copied!
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="balance-movement">
+          <div class="transfer-filters">
+            <button >Show All Transfers</button>
+            <button>
+              Show Positive Transfers
+            </button>
+            <button >
+              Show Negative Transfers
+            </button>
+          </div>
+          <app-transfers class="transfer-list"></app-transfers>
+        </section>
+      </section>
+    </div>
+  </main>
+  

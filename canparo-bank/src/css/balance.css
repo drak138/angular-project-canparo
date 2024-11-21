@@ -79,11 +79,9 @@ border: white solid 4px;
     padding: 0;
 }
 .copied-text {
-    display: none;
     position: fixed;
     background-color: #28a745;
     color: white;
-    padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
     z-index: 101;
