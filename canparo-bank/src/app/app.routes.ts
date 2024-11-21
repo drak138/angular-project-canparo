@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { PartnersComponent } from './components/partners/partners.component';
 import { BalanceComponent } from './components/balance/balance.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 export const routes: Routes = [{
     path:'',component:LoginComponent,title:"Login Page"},
@@ -13,6 +14,7 @@ export const routes: Routes = [{
     {path:'auth/register',component:RegisterComponent, title: "Register Page"},
     {path:'about',component:AboutComponent, title: "About Page"},
     {path:'about/partners',component:PartnersComponent, title: "Partners Page",},
+    {path:'about/contacts',component:ContactsComponent, title: "Contacts Page",},
     {path:'card/balance',component:BalanceComponent,title:"My Balance"},
 
 ];
