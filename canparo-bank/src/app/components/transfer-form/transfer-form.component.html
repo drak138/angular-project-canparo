@@ -1,0 +1,25 @@
+<form class="{{formClass}}" method="POST">
+    <label for="bill-account">Изберете сметка:</label>
+    <select name="bill-account" id="bill-account">
+        <option *ngFor="let account of accounts" [value]="account.iban">
+            {{ account.name }}; {{ account.iban }}; {{ account.balance }}
+          </option>
+    </select>
+
+    <label for="reciever">Име на получател:</label>
+    <input type="text" name="reciever" id="reciever">
+
+    <label for="reciever-Iban">IBAN:</label>
+    <input type="text" name="Iban" id="reciever-Iban" >
+
+    <label for="amount">Сума:</label>
+    <input type="number" name="amount" id="amount" >
+
+    <label for="reason">Основание:</label>
+    <input type="text" name="reason" id="reason" >
+
+    <label for="more">Още пояснения:</label>
+    <input type="text" name="more" id="more" >
+
+    <button class="{{btn.class}}">{{btn.text}}</button>
+</form>

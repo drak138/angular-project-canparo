@@ -13,6 +13,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { CreateBillComponent } from './components/create-bill/create-bill.component';
 import { MyBillsComponent } from './components/my-bills/my-bills.component';
 import { CreateCardComponent } from './components/create-card/create-card.component';
+import { TransferComponent } from './components/transfer/transfer.component';
 
 export const routes: Routes = [{
     path:'',component:LoginComponent,title:"Login Page"},
@@ -33,6 +34,7 @@ export const routes: Routes = [{
     {path:'card/bills',component:MyBillsComponent,title:"My Bills"},
     {path:'card/createBill',component:CreateBillComponent,title:"Create Bill"},
     {path:'card/create',component:CreateCardComponent,title:"Create Card"},
+    {path:'card/transfer',component:TransferComponent,title:"Transfer Page"}
 
 ];
     

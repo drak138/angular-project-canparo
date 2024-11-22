@@ -28,7 +28,6 @@ constructor(private fb: FormBuilder) {
 })
   // Enable/disable creditAmount based on cardType selection
   this.form.get('cardType')?.valueChanges.subscribe((value) => {
-    console.log(value)
     if (value === 'Credit') {
       this.form.get('creditAmount')?.enable();
     } else {

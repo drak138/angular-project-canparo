@@ -3,15 +3,15 @@ import { Component } from '@angular/core';
 import { TransferFormComponent } from '../transfer-form/transfer-form.component';
 
 @Component({
-  selector: 'app-create-bill',
+  selector: 'app-transfer',
   standalone: true,
   imports: [CommonModule,TransferFormComponent],
-  templateUrl: './create-bill.component.html',
-  styleUrl: './create-bill.component.css'
+  templateUrl: './transfer.component.html',
+  styleUrl: './transfer.component.css'
 })
-export class CreateBillComponent {
+export class TransferComponent {
   btn={
-    text:'Създай Сметка',
-    class:"create-bill-btn"
+    text:'Изпращане на превода',
+    class:"send-transfer"
   }
 }
