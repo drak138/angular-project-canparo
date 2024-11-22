@@ -8,6 +8,11 @@ import { BalanceComponent } from './components/balance/balance.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { CreateBillComponent } from './components/create-bill/create-bill.component';
+import { MyBillsComponent } from './components/my-bills/my-bills.component';
+import { CreateCardComponent } from './components/create-card/create-card.component';
 
 export const routes: Routes = [{
     path:'',component:LoginComponent,title:"Login Page"},
@@ -19,10 +24,15 @@ export const routes: Routes = [{
     {path:'about/contacts',component:ContactsComponent, title: "Contacts Page",},
     {path:'card/balance',component:BalanceComponent,title:"My Balance"},
     {path:'card',children:[
-        {path:'myCards',component:CardsComponent},
-        {path:':id/details',component:CardDetailsComponent}
+        {path:'myCards',component:CardsComponent,title:"Cards"},
+        {path:':id/details',component:CardDetailsComponent,title:"Details"}
     ]
-}
+    },
+    {path:'auth/changePass',component:ChangePassComponent,title:"Change Password"},
+    {path:'auth/myAccount',component:MyProfileComponent,title:"My Profile"},
+    {path:'card/bills',component:MyBillsComponent,title:"My Bills"},
+    {path:'card/createBill',component:CreateBillComponent,title:"Create Bill"},
+    {path:'card/create',component:CreateCardComponent,title:"Create Card"},
 
 ];
     

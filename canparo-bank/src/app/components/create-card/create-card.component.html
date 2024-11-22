@@ -1,0 +1,27 @@
+<main>
+    <section class="create-hero cards-hero">
+        <form class="create-form" [formGroup]="form">
+        <label for="card-model">Модел на картата</label>
+        <select name="card-model" id="card-model">
+            <option *ngFor="let card of Models" [value]="card.model">
+                {{card.model}}
+              </option>
+        </select>
+
+        <label for="card-type">Вид на картата</label>
+        <select formControlName="cardType">
+            <option *ngFor="let card of Types" [value]="card.type">
+              {{ card.type }}
+            </option>
+          </select>
+        
+          <!-- Conditionally show the credit amount input -->
+          <div *ngIf="form.get('cardType')?.value === 'Credit'">
+            <label class="creditAmount" for="creditAmount">Месечен Кредит:</label>
+            <input type="number" formControlName="creditAmount" id="creditAmount">
+          </div>
+
+        <button class="create-card-btn">Създай карта</button>
+        </form>
+    </section>
+</main>
