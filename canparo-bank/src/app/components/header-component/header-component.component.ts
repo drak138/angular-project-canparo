@@ -8,5 +8,5 @@ import { RouterLink} from '@angular/router';
   templateUrl: './header-component.component.html'
 })
 export class HeaderComponent {
-isLogged:boolean=false
+isLogged:boolean=true
 }
