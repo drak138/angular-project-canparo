@@ -14,27 +14,28 @@ import { CreateBillComponent } from './components/create-bill/create-bill.compon
 import { MyBillsComponent } from './components/my-bills/my-bills.component';
 import { CreateCardComponent } from './components/create-card/create-card.component';
 import { TransferComponent } from './components/transfer/transfer.component';
+import { AuthGuard } from './users.guard';
 
 export const routes: Routes = [{
     path:'',component:LoginComponent,title:"Login Page"},
-    {path:'auth/login',component:LoginComponent,title:"Login Page"},
-    {path:'home',component:HomeComponent, title: "Home Page"},
-    {path:'auth/register',component:RegisterComponent, title: "Register Page"},
-    {path:'about',component:AboutComponent, title: "About Page"},
-    {path:'about/partners',component:PartnersComponent, title: "Partners Page",},
-    {path:'about/contacts',component:ContactsComponent, title: "Contacts Page",},
-    {path:'card/balance',component:BalanceComponent,title:"My Balance"},
+    {path:'auth/login',component:LoginComponent,title:"Login Page",canActivate:[AuthGuard]},
+    {path:'home',component:HomeComponent, title: "Home Page",canActivate:[AuthGuard]},
+    {path:'auth/register',component:RegisterComponent, title: "Register Page",canActivate:[AuthGuard]},
+    {path:'about',component:AboutComponent, title: "About Page",canActivate:[AuthGuard]},
+    {path:'about/partners',component:PartnersComponent, title: "Partners Page",canActivate:[AuthGuard]},
+    {path:'about/contacts',component:ContactsComponent, title: "Contacts Page",canActivate:[AuthGuard]},
+    {path:'card/balance',component:BalanceComponent,title:"My Balance",canActivate:[AuthGuard]},
     {path:'card',children:[
-        {path:'myCards',component:CardsComponent,title:"Cards"},
-        {path:':id/details',component:CardDetailsComponent,title:"Details"}
+        {path:'myCards',component:CardsComponent,title:"Cards",canActivate:[AuthGuard]},
+        {path:':id/details',component:CardDetailsComponent,title:"Details",canActivate:[AuthGuard]}
     ]
     },
-    {path:'auth/changePass',component:ChangePassComponent,title:"Change Password"},
-    {path:'auth/myAccount',component:MyProfileComponent,title:"My Profile"},
-    {path:'card/bills',component:MyBillsComponent,title:"My Bills"},
-    {path:'card/createBill',component:CreateBillComponent,title:"Create Bill"},
-    {path:'card/create',component:CreateCardComponent,title:"Create Card"},
-    {path:'card/transfer',component:TransferComponent,title:"Transfer Page"}
+    {path:'auth/changePass',component:ChangePassComponent,title:"Change Password",canActivate:[AuthGuard]},
+    {path:'auth/myAccount',component:MyProfileComponent,title:"My Profile",canActivate:[AuthGuard]},
+    {path:'card/bills',component:MyBillsComponent,title:"My Bills",canActivate:[AuthGuard]},
+    {path:'card/createBill',component:CreateBillComponent,title:"Create Bill",canActivate:[AuthGuard]},
+    {path:'card/create',component:CreateCardComponent,title:"Create Card",canActivate:[AuthGuard]},
+    {path:'card/transfer',component:TransferComponent,title:"Transfer Page",canActivate:[AuthGuard]}
 
 ];
     
