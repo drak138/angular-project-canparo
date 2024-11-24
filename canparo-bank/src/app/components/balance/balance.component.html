@@ -11,9 +11,11 @@
             <form method="GET">
               <label for="account-options">ИЗБЕРЕТЕ ВАШАТА СМЕТКА</label>
               <select name="account-options" class="account-options" id="account-options">
-                <option *ngFor="let account of accounts" [value]="account.iban">
-                  {{ account.name }}; {{ account.iban }}; {{ account.balance }}
+                @for(accounts of accounts; track $index){
+                <option [value]="accounts.iban">
+                  {{ accounts.name }}; {{ accounts.iban }}; {{ accounts.balance }}
                 </option>
+              }
               </select>
             </form>
           </div>
@@ -60,10 +62,12 @@
                   <i class="fa-solid fa-copy"></i> Copy IBAN
                 </button>
               </div>
-              <div id="copiedText" class="copied-text" *ngIf="copied" [style.left.px]="mouseX + 10"
+              @if(copied){
+              <div id="copiedText" class="copied-text" [style.left.px]="mouseX + 10"
               [style.top.px]="mouseY">
                 Copied!
               </div>
+            }
             </div>
           </div>
         </section>

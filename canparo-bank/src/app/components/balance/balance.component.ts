@@ -1,4 +1,4 @@
-import { Component,HostListener } from '@angular/core';
+import { Component,HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { TransfersComponent } from './transfers/transfers.component';
 import { RouterLink } from '@angular/router';
@@ -12,24 +12,24 @@ import { ShareService } from './share.service';
   templateUrl: './balance.component.html',
   styleUrl: './balance.component.css'
 })
-export class BalanceComponent {
+export class BalanceComponent{
   // export class BalanceComponent {
   iban: string = 'BG27STAJG095497650274';
   accounts = [
     { name: 'Преслав Красимиров Гешев', iban: 'BG27STAJG095497650274', balance: '57.90' },
     { name: 'Jhon Doe', iban: 'G27STAJG012345678901', balance: '450.00' },
   ];
+
   showShareOptions = false;
   copied = true;
   mouseX = 0;
   mouseY = 0;
-
+    
   // Toggle share options visibility
   onShareButtonClick(event: Event): void {
     this.showShareOptions = !this.showShareOptions;
     event.stopPropagation();
   }
-
   // Share via WhatsApp
   shareViaWhatsApp(): void {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent('IBAN: ' + this.iban)}`;
