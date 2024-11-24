@@ -1,7 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from "express"
+import mongoose from "mongoose";
+import bodyParser from "body-parser"
+import cors from "cors"
+import User from "./models/users.js"
 
 const app = express();
 
@@ -21,20 +22,13 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-// Example Schema and Model
-const ItemSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-});
-
-const Item = mongoose.model('Item', ItemSchema);
 
 // Example API Routes
 app.get('/api/items', async (req, res) => {
 //     const newItem = new Item({ name: "Sample Item", description: "Test Description" });
 // newItem.save();
     try {
-        const items = await Item.find();
+        const items = await User.find();
         res.json(items);
       } catch (error) {
         res.status(500).send('Error fetching items');
