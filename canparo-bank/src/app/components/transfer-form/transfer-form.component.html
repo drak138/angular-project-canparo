@@ -1,9 +1,11 @@
 <form class="{{formClass}}" method="POST">
     <label for="bill-account">Изберете сметка:</label>
     <select name="bill-account" id="bill-account">
-        <option *ngFor="let account of accounts" [value]="account.iban">
+        @for(account of accounts; track $index){
+        <option [value]="account.iban">
             {{ account.name }}; {{ account.iban }}; {{ account.balance }}
           </option>
+        }
     </select>
 
     <label for="reciever">Име на получател:</label>
