@@ -6,18 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000/api/items'; // Replace with your backend URL
+  private apiUrl = 'http://localhost:3000/api/users'; // Replace with your backend URL
 
   constructor(private http: HttpClient) {}
 
   // Get all items
-  getItems(): Observable<any[]> {
+  getUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
 
   // Add a new item
-  addItem(item: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl, item);
+  addUsers(user: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, user);
   }
 }
 

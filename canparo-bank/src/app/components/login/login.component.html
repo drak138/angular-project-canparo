@@ -1,13 +1,13 @@
 <main>
     <section class="login-hero">
-        <form class="login-form" action="" method="POST">
-            <label for="Email">Имейл адрес:</label>
-            <input type="text" id="email" name="email">
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="loginHandler()" >
+            <label for="email">Имейл адрес:</label>
+            <input type="text" id="email" name="email" ngModel #emailInput="ngModel">
 
-            <label for="Password">Парола:</label>
-            <input type="password" id="password" name="password">
+            <label for="password">Парола:</label>
+            <input type="password" id="password" name="password" ngModel #passwordInput="ngModel">
 
-            <button type="submit">Влизане</button>
+            <button >Влизане</button>
         <p class="signup">Нямаш профил? <a routerLink="/auth/register">Регистрирай се тук</a></p>
         </form>
     </section>

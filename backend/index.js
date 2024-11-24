@@ -24,21 +24,21 @@ db.once('open', () => {
 
 
 // Example API Routes
-app.get('/api/items', async (req, res) => {
+app.get('/api/users', async (req, res) => {
 //     const newItem = new Item({ name: "Sample Item", description: "Test Description" });
 // newItem.save();
     try {
-        const items = await User.find();
-        res.json(items);
+        const users = await User.find();
+        res.json(users);
       } catch (error) {
-        res.status(500).send('Error fetching items');
+        res.status(500).send('Error fetching users');
       }
 });
 
-app.post('/api/items', async (req, res) => {
-  const newItem = new Item(req.body);
-  await newItem.save();
-  res.json(newItem);
+app.post('/api/usres', async (req, res) => {
+  const newUser = new usres(req.body);
+  await newUser.save();
+  res.json(newUser);
 });
 
 const PORT = 3000;

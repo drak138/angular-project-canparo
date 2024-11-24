@@ -15,7 +15,7 @@ export const AuthGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   // Example: Replace this with your actual logic to check if the user is logged in
-  const isLoggedIn = true
+  const isLoggedIn = false
   const isAuthRoute = state.url.includes('/auth/login') || state.url.includes('/auth/register'); // Adjust routes as needed
 
   if (!isLoggedIn && !isAuthRoute) {
