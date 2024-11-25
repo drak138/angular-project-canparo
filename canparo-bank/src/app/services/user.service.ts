@@ -1,15 +1,21 @@
 import { jwtDecode } from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,of, tap, } from 'rxjs';
+import { Observable,of, tap, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class userService {
-  private apiUrl = 'http://localhost:3000/api/users'; // Replace with your backend URL
+  private apiUrl = 'http://localhost:3000/api/users';
+  private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
 
-  constructor(private http: HttpClient) {}
+  loggedIn$ = this.loggedInSubject.asObservable();
+
+  constructor(private http: HttpClient) {
+  }
+
+  
 
   // Get all items
   getUsers(): Observable<any[]> {
@@ -22,9 +28,7 @@ export class userService {
     tap((response:any)=>{
       const token=response.token
       this.setCookie('authToken', JSON.stringify(token), 1);
-      this.http.post('http://localhost:3000/api/users', user).subscribe((response: any) => {
-        console.log(response); // Access the token
-      });
+      this.loggedInSubject.next(true);
       return of (token)})
     )
   }
@@ -47,16 +51,20 @@ export class userService {
   isLoggedIn(): boolean {
     const token = this.getCookie('authToken');
     if (!token) {
+      this.loggedInSubject?.next(false);
       return false; // No token means the user is not logged in
     }
   
     try {
-      const decoded: any = jwtDecode(token); // Decode the token
+      const decoded: any = jwtDecode(token);
       const currentTime = Date.now() / 1000; // Current time in seconds
-      return decoded.exp > currentTime; // Check if token has expired
+      const isLoggedIn = decoded.exp > currentTime;
+      this.loggedInSubject?.next(isLoggedIn)
+      return isLoggedIn;// Check if token has expired
     } catch (error) {
       console.error('Invalid token:', error);
-      return false; // Invalid token means user is not logged in
+      this.loggedInSubject?.next(false);
+      return false;
     }
   }
 

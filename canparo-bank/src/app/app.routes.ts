@@ -17,13 +17,13 @@ import { TransferComponent } from './components/transfer/transfer.component';
 import { AuthGuard } from './users.guard';
 
 export const routes: Routes = [{
-    path:'',component:LoginComponent,title:"Login Page"},
+    path:'',redirectTo:"auth/login",pathMatch:'full'},
     {path:'auth/login',component:LoginComponent,title:"Login Page",canActivate:[AuthGuard]},
     {path:'home',component:HomeComponent, title: "Home Page",canActivate:[AuthGuard]},
     {path:'auth/register',component:RegisterComponent, title: "Register Page",canActivate:[AuthGuard]},
-    {path:'about',component:AboutComponent, title: "About Page",canActivate:[AuthGuard]},
-    {path:'about/partners',component:PartnersComponent, title: "Partners Page",canActivate:[AuthGuard]},
-    {path:'about/contacts',component:ContactsComponent, title: "Contacts Page",canActivate:[AuthGuard]},
+    {path:'about',component:AboutComponent, title: "About Page"},
+    {path:'about/partners',component:PartnersComponent, title: "Partners Page"},
+    {path:'about/contacts',component:ContactsComponent, title: "Contacts Page"},
     {path:'card/balance',component:BalanceComponent,title:"My Balance",canActivate:[AuthGuard]},
     {path:'card',children:[
         {path:'myCards',component:CardsComponent,title:"Cards",canActivate:[AuthGuard]},

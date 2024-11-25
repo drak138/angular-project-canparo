@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm,FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { userService } from '../../services/user.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { userService } from '../../services/user.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  constructor(private userService: userService) {}
+  constructor(private userService: userService,private router:Router) {}
 @ViewChild('registerForm') form:NgForm|undefined
 
     registerHandler(){
@@ -24,6 +24,7 @@ export class RegisterComponent {
       this.userService.addUsers(this.form?.value).subscribe(
         (response) => {
         console.log('User added successfully:', response);
+        this.router.navigate(["/home"])
         this.form?.reset()
       },
       (error) => {
