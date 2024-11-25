@@ -1,22 +1,28 @@
 <main>
     <section class="register-hero">
-        <form class="register-form" action="" method="POST">
+        <form class="register-form" #registerForm="ngForm" (ngSubmit)="registerHandler()">
             <label for="first-name">Първо име:</label>
-            <input type="text" id="First-name" name="firstName">
+            <input type="text" id="first-name" name="firstName" ngModel #firstNameInput="ngModel">
 
             <label for="last-name">Последно име:</label>
-            <input type="text" id="Last-name" name="lastName">
+            <input type="text" id="Last-name" name="lastName" ngModel #lastNameInput="ngModel">
 
             <label for="email">Имейл адрес:</label>
-            <input type="text" id="email" name="email">
+            <input type="text" id="email" name="email" ngModel #emailInput="ngModel">
+
+            <label for="phoneNumber">Телефон:</label>
+            <input type="number" id="phoneNumber" name="phoneNumber" ngModel #phoneNumberInput="ngModel">
+
+            <label for="address">Адрес:</label>
+            <input type="text" id="address" name="address" ngModel #addressInput="ngModel">
 
             <label for="password">Парола:</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" ngModel #passwordInput="ngModel">
 
             <label for="confirm-password">Потвърди парола:</label>
-            <input type="password" id="confirm-password" name="rePassword">
+            <input type="password" id="confirm-password" name="rePassword" ngModel #rePasswordInput="ngModel">
 
-            <button type="submit">Регистрирай</button>
+            <button >Регистрирай</button>
         <p class="signIn">Вече имате профил <a href="/auth/login">Регистрирайте се тук</a></p>
         </form>
     </section>

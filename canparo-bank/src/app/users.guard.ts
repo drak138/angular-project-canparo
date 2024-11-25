@@ -1,21 +1,11 @@
-// import { inject } from "@angular/core";
-// import { Router, CanActivateFn} from "@angular/router";
-// export const AuthGuard: CanActivateFn = (route, state) => {
-//     const router = inject(Router);
-//     const isLoggedIn = true ; 
-//     if(!isLoggedIn) {
-//      router.navigate(['auth/login']); // Redirect to login if not logged in 
-//     }
-//     return isLoggedIn;
-//     };
 import { inject } from "@angular/core";
 import { Router, CanActivateFn } from "@angular/router";
-
+import { userService } from "./services/user.service";
 export const AuthGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-
+  const authService = inject(userService);
   // Example: Replace this with your actual logic to check if the user is logged in
-  const isLoggedIn = false
+  const isLoggedIn = authService.isLoggedIn()
   const isAuthRoute = state.url.includes('/auth/login') || state.url.includes('/auth/register'); // Adjust routes as needed
 
   if (!isLoggedIn && !isAuthRoute) {
