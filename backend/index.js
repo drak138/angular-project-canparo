@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser"
 import cors from "cors"
 import User from "./models/users.js"
-import jwt from "jsonwebtoken";
+import { userService } from "./userService.js";
 
 
 const app = express();
@@ -24,7 +24,6 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-const JWT_SECRET='my-Secret-Key'
 
 // Example API Routes
 app.get('/api/users', async (req, res) => {
@@ -39,18 +38,14 @@ app.get('/api/users', async (req, res) => {
 });
 
 app.post('/api/users', async (req, res) => {
-  const newUser = new User(req.body);
-  await newUser.save();
-  try {const token = jwt.sign(
-    { id: newUser._id, email: newUser.email },
-    JWT_SECRET,
-    { expiresIn: '1h' } // Token expires in 1 hour
-  );
-  res.json({ token });
-}
-  catch (error) {
-    res.status(500).send('Error creating user');
+  const userData=req.body
+  const emailInUse=await userService.checkEmail(userData)
+
+  if(emailInUse){
+    return 
   }
+  const token=await userService.registerUser(userData)
+  res.json({ token });
 }
 )
 

@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,of, tap, BehaviorSubject } from 'rxjs';
+import { Observable,of, tap, BehaviorSubject, map, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +15,11 @@ export class userService {
   constructor(private http: HttpClient) {
   }
 
-  
-
   // Get all items
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
+  
 
   // Add a new item
   addUsers(user: any): Observable<any> {
@@ -31,6 +30,16 @@ export class userService {
       this.loggedInSubject.next(true);
       return of (token)})
     )
+  }
+
+  loginUser(data:any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/login`,data).pipe(
+      tap((response:any)=>{
+        const token=response.token
+        this.setCookie('authToken', JSON.stringify(token), 1);
+        this.loggedInSubject.next(true);
+        return of (token)})
+      )
   }
 
   setCookie(name: string, value: string, days: number): void {
@@ -48,6 +57,7 @@ export class userService {
     }
     return null;
   }
+
 
   logout():void{
     this.setCookie('authToken', '', -1)
