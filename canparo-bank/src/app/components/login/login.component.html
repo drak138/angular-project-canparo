@@ -1,4 +1,8 @@
+
 <main>
+    @if(errorMessage){
+    <app-err [errorMessage]="errorMessage"></app-err>
+    }
     <section class="login-hero">
         <form class="login-form" #loginForm="ngForm" (ngSubmit)="loginHandler()" >
             <label for="email">Имейл адрес:</label>

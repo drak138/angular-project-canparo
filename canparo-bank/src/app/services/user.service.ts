@@ -9,8 +9,10 @@ import { Observable,of, tap, BehaviorSubject, map, catchError } from 'rxjs';
 export class userService {
   private apiUrl = 'http://localhost:3000/api/users';
   private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+  private errorInSubject= new BehaviorSubject<string>("")
 
   loggedIn$ = this.loggedInSubject.asObservable();
+  errorIn$=this.errorInSubject.asObservable()
 
   constructor(private http: HttpClient) {
   }
@@ -25,6 +27,12 @@ export class userService {
   addUsers(user: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, user).pipe(
     tap((response:any)=>{
+      if(!response.token){
+        console.log(response)
+        this.errorInSubject.next(response)
+        return
+      }
+      console.log(response)
       const token=response.token
       this.setCookie('authToken', JSON.stringify(token), 1);
       this.loggedInSubject.next(true);

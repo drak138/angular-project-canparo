@@ -42,6 +42,7 @@ app.post('/api/users', async (req, res) => {
   const emailInUse=await userService.checkEmail(userData)
 
   if(emailInUse){
+    res.json("Email in use")
     return 
   }
   const token=await userService.registerUser(userData)

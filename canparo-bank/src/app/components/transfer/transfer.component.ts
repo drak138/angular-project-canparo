@@ -10,6 +10,7 @@ import { TransferFormComponent } from '../transfer-form/transfer-form.component'
   styleUrl: './transfer.component.css'
 })
 export class TransferComponent {
+  formClass='transfer-form'
   btn={
     text:'Изпращане на превода',
     class:"send-transfer"

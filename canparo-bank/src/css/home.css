@@ -154,3 +154,14 @@ nav ul {
   footer p {
     margin: 0;
   }
+
+.errorMessage-container{
+  text-align: center;
+  width: 180px;
+  height: 60px;
+  margin-top: 39px;
+  left: 76%;
+  position: absolute;
+  background-color: orange;
+  align-content: center;
+}

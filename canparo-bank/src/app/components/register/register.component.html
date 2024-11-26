@@ -1,4 +1,7 @@
 <main>
+    @if(errorMessage){
+    <app-err [errorMessage]="errorMessage"></app-err>
+    }
     <section class="register-hero">
         <form class="register-form" #registerForm="ngForm" (ngSubmit)="registerHandler()">
             <label for="first-name">Първо име:</label>
@@ -23,7 +26,7 @@
             <input type="password" id="confirm-password" name="rePassword" ngModel #rePasswordInput="ngModel">
 
             <button >Регистрирай</button>
-        <p class="signIn">Вече имате профил <a href="/auth/login">Регистрирайте се тук</a></p>
+        <p class="signIn">Вече имате профил <a href="/auth/login">Влезни тук</a></p>
         </form>
     </section>
 </main>
