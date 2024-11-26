@@ -32,6 +32,7 @@ export class userService {
       return of (token)})
     )
   }
+
   setCookie(name: string, value: string, days: number): void {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
@@ -46,6 +47,11 @@ export class userService {
       }
     }
     return null;
+  }
+
+  logout():void{
+    this.setCookie('authToken', '', -1)
+    this.isLoggedIn()
   }
 
   isLoggedIn(): boolean {
