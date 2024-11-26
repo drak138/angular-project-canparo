@@ -29,10 +29,10 @@ const userSchema= new Schema({
         required:true
     }
 })
-// userSchema.pre("save",async function(){
-//     const hash=await bcrypt.hash(this.password,SALT_ROUNDS)
-//     this.password=hash
-// })
+userSchema.pre("save",async function(){
+    const hash=await bcrypt.hash(this.password,SALT_ROUNDS)
+    this.password=hash
+})
 
 const User=model('User',userSchema)
 export default User

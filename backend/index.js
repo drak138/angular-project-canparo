@@ -39,16 +39,29 @@ app.get('/api/users', async (req, res) => {
 
 app.post('/api/users', async (req, res) => {
   const userData=req.body
-  const emailInUse=await userService.checkEmail(userData)
+  const emailInUse=await userService.checkEmail(userData.email)
 
   if(emailInUse){
-    res.json("Email in use")
+    const error="Email in use"
+    res.json({error})
     return 
   }
   const token=await userService.registerUser(userData)
   res.json({ token });
 }
 )
+app.post('/api/users/login',async(req,res)=>{
+  const {email,password}=req.body
+  const emailInUse=await userService.checkEmail(email)
+
+  if(!emailInUse){
+    const error="Email isn't registered"
+    res.json({error})
+    return
+  }
+  const token=await userService.loginUser(email,password)
+  res.json({token})
+})
 
 const PORT = 3000;
 app.listen(PORT, () => {

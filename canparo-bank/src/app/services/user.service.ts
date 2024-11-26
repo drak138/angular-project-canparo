@@ -27,9 +27,9 @@ export class userService {
   addUsers(user: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, user).pipe(
     tap((response:any)=>{
-      if(!response.token){
+      if(!response.error){
         console.log(response)
-        this.errorInSubject.next(response)
+        this.errorInSubject.next(response.error)
         return
       }
       console.log(response)
@@ -43,6 +43,11 @@ export class userService {
   loginUser(data:any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`,data).pipe(
       tap((response:any)=>{
+        if(response.error){
+          console.log(response)
+          this.errorInSubject.next(response.error)
+          return
+        }
         const token=response.token
         this.setCookie('authToken', JSON.stringify(token), 1);
         this.loggedInSubject.next(true);

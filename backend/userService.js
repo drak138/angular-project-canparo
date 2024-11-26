@@ -1,11 +1,12 @@
 import User from "./models/users.js";
 import jwt from "jsonwebtoken";
+import bcrypt from 'bcrypt'
 
 const JWT_SECRET='my-Secret-Key'
 export const userService={
 
-    async checkEmail(user){
-        const emailInUse=await User.findOne({email:user.email})
+    async checkEmail(email){
+        const emailInUse=await User.findOne({email})
         if(emailInUse==null){
             return false
         }
@@ -22,6 +23,15 @@ export const userService={
         catch (error) {
           res.status(500).send('Error creating user');
         }
+    },
+    async loginUser(email,password){
+        const user=await User.findOne({email})
+        console.log(password)
+        const isValid=await bcrypt.compare(password,user.password)
+        if(!isValid){
+            return 
+        }
+        return this.createToken(user)
     },
     createToken(user){
         const payLoad={
