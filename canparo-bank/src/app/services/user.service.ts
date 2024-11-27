@@ -136,5 +136,28 @@ export class userService {
         })
       )
   }
+  deleteUser():Observable<any>{
+    const token = this.getCookie('authToken');
+    if (!token) {
+      this.loggedInSubject?.next(false);
+      return of({ error: 'No authentication token found. Please log in.' });
+    } 
+    const decoded:any=jwtDecode(token)
+    const userId=decoded._id
+    return this.http.post<any>(`${this.apiUrl}/deleteUser`,{userId}).pipe(
+      tap((response:any)=>{
+        if(response.error){
+          this.errorInSubject.next(response.error)
+          throw new Error(response.error); // Propagate the error
+        }
+        
+        return this.logout()}),
+        catchError((error) => {
+          // Handle unexpected errors from the server
+          this.errorInSubject.next(error.message || 'An unexpected error occurred.');
+          return throwError(() => error);
+        })
+    )
+  }
 }
 

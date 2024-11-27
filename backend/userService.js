@@ -43,6 +43,9 @@ export const userService={
         newPass=await bcrypt.hash(newPass,SALT_ROUNDS)
         return await User.findByIdAndUpdate(userId,{password:newPass})
     },
+    async deleteUser(userId){
+        return await User.findByIdAndDelete(userId)
+    },
     createToken(user){
         const payLoad={
             _id:user._id,

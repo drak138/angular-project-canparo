@@ -68,8 +68,11 @@ app.post('/api/users/changePass',async(req,res)=>{
   console.log(result)
   res.json(result)
 })
-app.post('/api/users/delete',(req,res)=>{
-  //TODO
+app.post('/api/users/deleteUser',(req,res)=>{
+  const {userId}=req.body
+  const result=userService.deleteUser(userId)
+  res.json(result)
+
 })
 
 

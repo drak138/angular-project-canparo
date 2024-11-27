@@ -5,9 +5,9 @@
             <p class="email">bgmingteam&#64;gmail.com</p>
             <a routerLink="/card/bills" class="my-bank-acc">Брой сметки: 4</a>
             <a routerLink='/card/myCards' class="my-cards">Брой карти:2</a>
-            <button class="delete-btn">Изтриване на профила</button>
+            <button class="delete-btn" (click)="showDelete()">Изтриване на профила</button>
             <button class="logout-btn" (click)="logOutHandler()">Излизане от Профила</button>
-            <a class="changePass" routerLink="/auth/changePass">Променете своята парола</a>
+            <a class="changePass" routerLink="/auth/changePass" >Променете своята парола</a>
         </div>
     </section>
 </main>

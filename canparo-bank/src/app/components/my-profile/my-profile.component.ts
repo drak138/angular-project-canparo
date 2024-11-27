@@ -16,4 +16,16 @@ export class MyProfileComponent {
     this.userService.logout()
     this.router.navigate(["auth/login"])
   }
+  showDelete(){
+    const userResponse = confirm("Do you want to proceed?");
+    if (userResponse) {
+      this.userService.deleteUser().subscribe((response) => {
+        this.router.navigate(["auth/login"])
+      },
+      (error) => {
+        console.log(error)
+      })
+    } else {
+    }
+  }
 }
