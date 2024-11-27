@@ -1,7 +1,26 @@
 import { jwtDecode } from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,of, tap, BehaviorSubject, map, catchError } from 'rxjs';
+import { Observable,of, tap, BehaviorSubject, map, catchError, throwError } from 'rxjs';
+
+interface registerData{
+  firstName:String;
+  lastName:string;
+  email:string;
+  phoneNumber:number;
+  address:string;
+  password:string;
+  rePassword:string;
+}
+interface loginData{
+  email:String;
+  password:string
+}
+interface changePassData{
+  oldPassword:string;
+  newPassword:string;
+  confirmNewPassword:string
+}
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +29,7 @@ export class userService {
   private apiUrl = 'http://localhost:3000/api/users';
   private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
   private errorInSubject= new BehaviorSubject<string>("")
+
 
   loggedIn$ = this.loggedInSubject.asObservable();
   errorIn$=this.errorInSubject.asObservable()
@@ -24,33 +44,30 @@ export class userService {
   
 
   // Add a new item
-  addUsers(user: any): Observable<any> {
+  addUsers(user: registerData): Observable<any> {
     return this.http.post<any>(this.apiUrl, user).pipe(
     tap((response:any)=>{
-      if(!response.error){
-        console.log(response)
+      if(response.error){
         this.errorInSubject.next(response.error)
         return
       }
-      console.log(response)
       const token=response.token
       this.setCookie('authToken', JSON.stringify(token), 1);
-      this.loggedInSubject.next(true);
+      this.isLoggedIn()
       return of (token)})
     )
   }
 
-  loginUser(data:any): Observable<any> {
+  loginUser(data:loginData): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`,data).pipe(
       tap((response:any)=>{
         if(response.error){
-          console.log(response)
           this.errorInSubject.next(response.error)
           return
         }
         const token=response.token
         this.setCookie('authToken', JSON.stringify(token), 1);
-        this.loggedInSubject.next(true);
+        this.isLoggedIn()
         return of (token)})
       )
   }
@@ -91,11 +108,33 @@ export class userService {
       this.loggedInSubject?.next(isLoggedIn)
       return isLoggedIn;// Check if token has expired
     } catch (error) {
-      console.error('Invalid token:', error);
+      this.setCookie('authToken', '', -1)
       this.loggedInSubject?.next(false);
       return false;
     }
   }
-
+  changePass(data:changePassData): Observable<any>{
+    const {oldPassword,newPassword}=data
+    const token=this.getCookie('authToken')
+    if(!token){
+      return of({ error: 'No authentication token found. Please log in.' });
+    }
+    const decode: any=jwtDecode(token)
+    const userId=decode._id
+    return this.http.post<any>(`${this.apiUrl}/changePass`,{oldPassword,newPassword,userId}).pipe(
+      tap((response:any)=>{
+        if(response.error){
+          this.errorInSubject.next(response.error)
+          throw new Error(response.error); // Propagate the error
+        }
+        
+        return this.logout()}),
+        catchError((error) => {
+          // Handle unexpected errors from the server
+          this.errorInSubject.next(error.message || 'An unexpected error occurred.');
+          return throwError(() => error);
+        })
+      )
+  }
 }
 

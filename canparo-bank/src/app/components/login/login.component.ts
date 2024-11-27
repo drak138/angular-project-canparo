@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     this.userService.errorIn$.subscribe((errorIn)=>{
       this.errorMessage=errorIn
-      console.log(errorIn)
     })
   }
 @ViewChild("loginForm") form: NgForm|undefined

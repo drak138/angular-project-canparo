@@ -62,6 +62,16 @@ app.post('/api/users/login',async(req,res)=>{
   const token=await userService.loginUser(email,password)
   res.json({token})
 })
+app.post('/api/users/changePass',async(req,res)=>{
+  const {oldPassword,newPassword,userId}=req.body
+  const result=await userService.changePass(userId,oldPassword,newPassword)
+  console.log(result)
+  res.json(result)
+})
+app.post('/api/users/delete',(req,res)=>{
+  //TODO
+})
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

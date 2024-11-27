@@ -21,7 +21,6 @@ export class ShareService {
           title: 'Share IBAN',
           text: `IBAN: ${iban}`,
         });
-        console.log('IBAN shared successfully');
       } catch (error) {
         console.error('Error sharing IBAN:', error);
       }

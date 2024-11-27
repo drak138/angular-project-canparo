@@ -19,7 +19,6 @@ errorMessage=""
 ngOnInit(): void {
   this.userService.errorIn$.subscribe((errorIn)=>{
     this.errorMessage=errorIn
-    console.log(errorIn)
   })
 }
 
@@ -27,7 +26,6 @@ ngOnInit(): void {
 @ViewChild('registerForm') form:NgForm|undefined
 
     registerHandler(){
-      console.log(this.form?.value)
       if(this.form?.value.password!==this.form?.value.rePassword){
         alert("Passwords do not match!")
         return

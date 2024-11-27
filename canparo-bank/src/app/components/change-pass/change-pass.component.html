@@ -1,17 +1,20 @@
 <main>
+    @if(errorMessage){
+        <app-err [errorMessage]="errorMessage"></app-err>
+    }
     <section class="cards-hero update-hero">
-        <form class="update-form" action="" method="POST">
+        <form class="update-form" #changePassForm="ngForm" (ngSubmit)="changeHandler()">
 
             <label for="old-password">Парола:</label>
-            <input type="password" id="old-password" name="old-password">
+            <input type="password" id="old-password" name="oldPassword" ngModel #oldPassInput="ngModel">
 
             <label for="new-password">Нова парола:</label>
-            <input type="password" id="new-password" name="new-password">
+            <input type="password" id="new-password" name="newPassword" ngModel #newPassInput="ngModel">
 
             <label for="confirm-new-password">Потвърди нова парола:</label>
-            <input type="password" id="confirm-new-password" name="confirm-new-password">
+            <input type="password" id="confirm-new-password" name="confirmNewPassword" ngModel #cofirmNewPassInput="ngModel">
 
-            <button type="submit">Промени</button>
+            <button>Промени</button>
         </form>
     </section>
 </main>
