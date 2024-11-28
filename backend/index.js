@@ -4,6 +4,8 @@ import bodyParser from "body-parser"
 import cors from "cors"
 import User from "./models/users.js"
 import { userService } from "./userService.js";
+import verifyToken from "./middleware/auth.js";
+import  {billService}  from "./billService.js";
 
 
 const app = express();
@@ -73,6 +75,21 @@ app.post('/api/users/deleteUser',(req,res)=>{
   const result=userService.deleteUser(userId)
   res.json(result)
 
+})
+app.get('/api/bills', verifyToken, async (req, res) => {
+  const userId = req.user.id; // Assume `verifyToken` attaches `user` to the request
+  try {
+      const bills = await Bill.find({ ownerId: userId });
+      res.json({ hasBills: bills.length > 0 });
+  } catch (error) {
+      console.error('Error fetching bills:', error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+app.post('/api/bills',async(req,res)=>{
+  const {billName,balance,ownerId}=req.body
+  const result=billService.createUserBill(billName,balance,ownerId)
+  res.json(result)
 })
 
 

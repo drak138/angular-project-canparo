@@ -15,6 +15,7 @@ import { MyBillsComponent } from './components/my-bills/my-bills.component';
 import { CreateCardComponent } from './components/create-card/create-card.component';
 import { TransferComponent } from './components/transfer/transfer.component';
 import { AuthGuard } from './users.guard';
+import { CreateUserBillComponent } from './components/create-user-bill/create-user-bill.component';
 
 export const routes: Routes = [{
     path:'',redirectTo:"auth/login",pathMatch:'full'},
@@ -34,6 +35,7 @@ export const routes: Routes = [{
     {path:'auth/myAccount',component:MyProfileComponent,title:"My Profile",canActivate:[AuthGuard]},
     {path:'card/bills',component:MyBillsComponent,title:"My Bills",canActivate:[AuthGuard]},
     {path:'card/createBill',component:CreateBillComponent,title:"Create Bill",canActivate:[AuthGuard]},
+    {path:'card/createUserBill',component:CreateUserBillComponent,title:"Create Youre Bill",canActivate:[AuthGuard]},
     {path:'card/create',component:CreateCardComponent,title:"Create Card",canActivate:[AuthGuard]},
     {path:'card/transfer',component:TransferComponent,title:"Transfer Page",canActivate:[AuthGuard]}
 

@@ -136,14 +136,20 @@ export class userService {
         })
       )
   }
-  deleteUser():Observable<any>{
+  getUserId():void{
     const token = this.getCookie('authToken');
     if (!token) {
       this.loggedInSubject?.next(false);
-      return of({ error: 'No authentication token found. Please log in.' });
+      return 
     } 
     const decoded:any=jwtDecode(token)
-    const userId=decoded._id
+    return decoded._id
+  }
+  deleteUser():Observable<any>{
+    const userId=this.getUserId()
+    if(userId===undefined){
+      return of({error:'No authentication token found. Please log in.'})
+    }
     return this.http.post<any>(`${this.apiUrl}/deleteUser`,{userId}).pipe(
       tap((response:any)=>{
         if(response.error){

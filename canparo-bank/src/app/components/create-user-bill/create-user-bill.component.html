@@ -1,0 +1,22 @@
+<main>
+ <section class="transfer-hero">   
+ <form class="transfer-form"  #createBill="ngForm" (ngSubmit)="createUserBill()">
+    <label for="billName">Име на сметка</label>
+    <input type="text" name="billName" id="billName" ngModel #billName="ngModel">
+
+    <label for="balance">Първоначален баланс:</label>
+    <input type="number" name="balance" id="balance" ngModel #balance="ngModel">
+
+    <label for="card">Карта:
+        <div class="cardChoice">
+        <input type="radio" name="choice" [value]="true" [(ngModel)]="cardChoice">
+        <div class="circle-option">Yes</div>
+        <input type="radio" name="choice" [value]="false" [(ngModel)]="cardChoice">
+        <div class="circle-option">No</div>
+    </div>
+    </label>
+
+    <button>Създай своята сметка</button>
+ </form>
+ </section>
+</main>
