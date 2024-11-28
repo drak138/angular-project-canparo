@@ -1,7 +1,8 @@
-import { catchError, Observable,of, tap, throwError } from 'rxjs';
+import { catchError, Observable, of, tap, throwError, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { userService } from './user.service';
+import { jwtDecode } from 'jwt-decode';
 
 interface userBill{
   billName:string;
@@ -30,12 +31,15 @@ export class BillService {
   }
   checkUserBills():Observable<any>{
     const token=this.userService.getCookie('authToken')
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`, 
+      Authorization:token, 
     });
     return this.http.get(this.apiUrl,{headers}).pipe(
-      tap((response) => {
-        console.log(response)
+      tap((response:any)=>{
+        return response.hasBills
       })
     )
   }

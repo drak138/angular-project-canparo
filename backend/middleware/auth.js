@@ -1,15 +1,22 @@
 import jwt from 'jsonwebtoken'
-const secretKey = 'your_secret_key'; // Replace with a strong, securely stored key
+const JWT_SECRET='my-Secret-Key'
 
 function verifyToken(req, res, next) {
-    const token = req.headers['authorization'];
-    if (!token) return res.status(403).json({ error: 'No token provided' });
+    let token = req.headers['authorization'].slice(1,-1);
+    const decoded=jwt.decode(token)
+    console.log(decoded)
 
-    jwt.verify(token, secretKey, (err, decoded) => {
-        if (err) return res.status(401).json({ error: 'Unauthorized' });
-        req.user = decoded; // Attach user data (e.g., `id`, `role`) to the request
+    jwt.verify(token,JWT_SECRET, (err, user) => {
+        if (err) {
+            console.error('Token verification failed:', err.message);
+            return res.status(403).json({ error: 'Invalid or expired token' });
+        }
+
+        req.user = user; // Attach the decoded user object to the request
+        console.log('Decoded User:', user); // Debug decoded token payload
         next();
     });
+
 }
 
 export default verifyToken
