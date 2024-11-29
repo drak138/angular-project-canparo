@@ -57,12 +57,27 @@ export class BillService {
         if(response.error){
           throw new Error(response.error);
         }else{
-          console.log(response)
           return response
         }
       }),catchError((error)=>{
       return throwError(() => error)
     })
   )
+  }
+  getHistory(filter:string,IBAN:string):Observable<any>{
+    const token=this.userService.getCookie('authToken')
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
+    const headers = new HttpHeaders({
+      Authorization:token,
+      filter,
+      IBAN
+    });
+    return this.http.get(`${this.apiUrl}/history`,{headers}).pipe(
+      tap((response)=>{
+        return response
+      })
+    )
   }
 }

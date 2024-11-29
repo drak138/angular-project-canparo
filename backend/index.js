@@ -100,6 +100,12 @@ app.post("/api/bills/transfer",async(req,res)=>{
   return res.json(await billService.transfer(biller,recieverIban,amount,reason,more))
 
 })
+app.get("/api/bills/history",verifyToken,async(req,res)=>{
+  const filter=req.headers.filter
+  const IBAN=req.headers.iban
+  console.log(IBAN)
+  return res.json(await billService.getHistory(filter,IBAN))
+})
 
 
 const PORT = 3000;

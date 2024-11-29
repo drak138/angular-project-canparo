@@ -27,10 +27,8 @@ export class TransferComponent {
 
   @ViewChild('transferForm')form:NgForm|undefined
   transferHandler(formValues: any): void {
-    console.log(formValues)
     this.billService.transfer(formValues).subscribe(
       (response)=>{
-      console.log(response)
       this.errorMessage = ''; // Clear any existing error
       this.router.navigate(["/home"])
     },(error)=>{

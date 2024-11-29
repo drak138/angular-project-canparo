@@ -50,7 +50,6 @@ generateRandomString(length, characters) {
       transferType:'incoming'
     }
     const reciever=(await ((await userBill.findOne({IBAN})).populate("ownerId"))).ownerId
-    console.log(reciever)
     const recieverData={
       name:`${reciever.firstName} ${reciever.lastName}`,
       reason,
@@ -63,5 +62,15 @@ generateRandomString(length, characters) {
     await userBill.findOneAndUpdate({IBAN},{$inc:{balance:amount},$push:{transferHistory:{$each: [senderData],$slice: -20}}})
     await userBill.findOneAndUpdate({IBAN:biller.IBAN},{$inc:{balance:-amount},$push:{transferHistory:{$each: [recieverData],$slice: -20}}})
     return "transfer successful"
+  },
+  async getHistory(filter,IBAN){
+    let history=(await userBill.findOne({IBAN})).transferHistory
+    if(filter=="All"){
+      return history
+    }
+    else {
+      history=history.filter((el)=>el.transferType===filter)
+      return history
+    }
   }
 }

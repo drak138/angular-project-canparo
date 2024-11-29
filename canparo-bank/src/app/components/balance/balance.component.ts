@@ -33,12 +33,12 @@ export class BalanceComponent implements OnInit{
       this.accounts=response.hasBills
       this.selectedAccount = this.accounts[0].IBAN;
       this.selectedAccountData = { ...this.accounts[0] };
+      const historySub=this.billService.getHistory("All",this.selectedAccount).subscribe((response)=>{
+        this.transferHistory=response.reverse()
+      })
+    this.subscription.add(historySub)
     })
-    // const historySub=this.billService.getHistory().subscribe((response)=>{
-    //   this.transferHistory=response
-    // })
     this.subscription.add(accountSub);
-    // this.subscription.add(historySub)
   }
 
   onAccountChange() {
@@ -46,6 +46,10 @@ export class BalanceComponent implements OnInit{
     this.selectedAccountData = this.accounts.find(
       (account) => account.IBAN === this.selectedAccount
     );
+    this.billService.getHistory("All",this.selectedAccountData.IBAN).subscribe((response)=>{
+      this.transferHistory=response
+      console.log(this.transferHistory)
+    })
   }
 
   showShareOptions = false;

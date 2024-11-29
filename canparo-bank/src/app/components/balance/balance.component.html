@@ -81,7 +81,20 @@
               Show Negative Transfers
             </button>
           </div>
-          <app-transfers class="transfer-list"></app-transfers>
+          <div class="transfer-list">
+            @for(transfer of transferHistory;track $index){
+            <div class="transfer-item">
+              <p>Причина на плащането: {{transfer.reason}}</p>
+              <p>Име: {{transfer.name}}</p>
+              <p>Дата: {{transfer.transferDate}}</p>
+              
+              <p *ngIf="transfer.transferType === 'incoming'">Сума: <span style="color: green;">+{{transfer.amount}}</span> BGN</p>
+              <p *ngIf="transfer.transferType !== 'incoming'">Сума: <span style="color: red;"> -{{transfer.amount}}</span> BGN</p>
+              <p>IBAN: ${{transfer.IBAN}}</p>
+          </div>
+        }
+          </div>
+          <!-- <app-transfers class="transfer-list"></app-transfers> -->
         </section>
       </section>
     </div>

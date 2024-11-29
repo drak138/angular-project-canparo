@@ -1,35 +1,12 @@
-    <div class="transfer-item">
-        <p>Причина на плащането: Payment for services</p>
-        <p>Име: John Doe</p>
-        <p>Дата: 2024-11-01</p>
-        <p>Сума: +100.00 BGN</p>
-        <p>IBAN: BG27STAJG012345678901</p>
-    </div>
-    <div class="transfer-item">
-        <p>Причина на плащането: Refund</p>
-        <p>Име: Jane Smith</p>
-        <p>Дата: 2024-10-30</p>
-        <p>Сума: -50.00 BGN</p>
-        <p>IBAN: BG27STAJG098765432101</p>
-    </div>
-    <div class="transfer-item">
-        <p>Причина на плащането: Payment for services</p>
-        <p>Име: John Doe</p>
-        <p>Дата: 2024-11-01</p>
-        <p>Сума: +100.00 BGN</p>
-        <p>IBAN: BG27STAJG012345678901</p>
-    </div>
-    <div class="transfer-item">
-        <p>Причина на плащането: Payment for services</p>
-        <p>Име: John Doe</p>
-        <p>Дата: 2024-11-01</p>
-        <p>Сума: +100.00 BGN</p>
-        <p>IBAN: BG27STAJG012345678901</p>
-    </div>
-    <div class="transfer-item">
-        <p>Причина на плащането: Payment for services</p>
-        <p>Име: John Doe</p>
-        <p>Дата: 2024-11-01</p>
-        <p>Сума: +100.00 BGN</p>
-        <p>IBAN: BG27STAJG012345678901</p>
-    </div>
+    <!-- <div class="transfer-item">
+        <p>Причина на плащането: {{transferHistory.reason}}</p>
+        <p>Име: {{transferHistory.name}}</p>
+        <p>Дата: {{transferHistory.Date}}</p>
+        @if({{transferHistory.transferType==="incoming"}}){
+        <p>Сума: <span style="color: green;">+{{transferHistory.amount}}</span> BGN</p>
+        }
+        @else{
+        <p>Сума: <span style="color: red;"> -{{transferHistory.amount}}</span> BGN</p>
+        }
+        <p>IBAN: ${{transferHistory.IBAN}}</p>
+    </div> -->
