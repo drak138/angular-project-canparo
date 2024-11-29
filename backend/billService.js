@@ -20,9 +20,48 @@ generateRandomString(length, characters) {
     async createUserBill(billName,balance,ownerId){
         let IBAN=this.generateRandomIBAN()
         while (await userBill.findOne({IBAN})) {
-            console.log("iban exists")
             IBAN=this.generateRandomIBAN()
         }
         return await userBill.create({IBAN,billName,balance,ownerId})
+    },
+  async checkReciver(reciverName,IBAN) {
+    const reciverIBAN=await userBill.findOne({IBAN})
+    if(reciverIBAN==null){
+      return {error:"no such reciever"}
     }
+    const ownerInfo=(await reciverIBAN.populate("ownerId")).ownerId
+    const ownerName=`${ownerInfo.firstName} ${ownerInfo.lastName}`
+    if(ownerName!==reciverName){
+      return {error:"no such reciever"}
+    }
+    else return false
+  },
+  async transfer(biller,IBAN,amount,reason,more){
+    const sender= (await ((await userBill.findOne({IBAN:biller.IBAN})).populate("ownerId"))).ownerId
+    const today = new Date();
+    const transferDate = today.toISOString().split('T')[0];
+    const senderData={
+      name:`${sender.firstName} ${sender.lastName}`,
+      reason,
+      more,
+      transferDate,
+      amount,
+      IBAN:biller.IBAN,
+      transferType:'incoming'
+    }
+    const reciever=(await ((await userBill.findOne({IBAN})).populate("ownerId"))).ownerId
+    console.log(reciever)
+    const recieverData={
+      name:`${reciever.firstName} ${reciever.lastName}`,
+      reason,
+      more,
+      transferDate,
+      amount,
+      IBAN,
+      transferType:'outgoing'
+    }
+    await userBill.findOneAndUpdate({IBAN},{$inc:{balance:amount},$push:{transferHistory:{$each: [senderData],$slice: -20}}})
+    await userBill.findOneAndUpdate({IBAN:biller.IBAN},{$inc:{balance:-amount},$push:{transferHistory:{$each: [recieverData],$slice: -20}}})
+    return "transfer successful"
+  }
 }

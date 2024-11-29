@@ -1,5 +1,9 @@
 <main>
+    @if(errorMessage){
+        <app-err [errorMessage]="errorMessage"></app-err>
+    }
     <section class="transfer-hero">
-        <app-transfer-form [btn]="btn" [formClass]="formClass"></app-transfer-form>
+        <app-transfer-form [btn]="btn" [formClass]="formClass" [formName]="'transferForm'" [formEvent]="transferHandler">
+        </app-transfer-form>
     </section>
 </main>

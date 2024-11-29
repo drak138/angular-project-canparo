@@ -1,27 +1,27 @@
-<form class="{{formClass}}" method="POST">
+<form class="{{formClass}}" #transferForm="ngForm" (ngSubmit)="handleSubmit(transferForm.value)">
     <label for="bill-account">Изберете сметка:</label>
-    <select name="bill-account" id="bill-account">
+    <select name="biller" id="bill-account" (change)="onAccountChange()" [(ngModel)]="selectedAccount" #biller="ngModel">
         @for(account of accounts; track $index){
-        <option [value]="account.iban">
-            {{ account.name }}; {{ account.iban }}; {{ account.balance }}
+        <option [value]="account.IBAN">
+            {{ account.billName }}; {{ account.IBAN }}; лв {{ account.balance }}
           </option>
         }
     </select>
 
     <label for="reciever">Име на получател:</label>
-    <input type="text" name="reciever" id="reciever">
+    <input type="text" name="reciever" id="reciever" ngModel #reciever="ngModel">
 
     <label for="reciever-Iban">IBAN:</label>
-    <input type="text" name="Iban" id="reciever-Iban" >
+    <input type="text" name="recieverIban" id="reciever-Iban" ngModel #recieverIban="ngModel">
 
     <label for="amount">Сума:</label>
-    <input type="number" name="amount" id="amount" >
+    <input type="number" name="amount" id="amount" ngModel #amount="ngModel">
 
     <label for="reason">Основание:</label>
-    <input type="text" name="reason" id="reason" >
+    <input type="text" name="reason" id="reason" ngModel #reason="ngModel">
 
     <label for="more">Още пояснения:</label>
-    <input type="text" name="more" id="more" >
+    <input type="text" name="more" id="more" ngModel #more="ngModel">
 
     <button class="{{btn.class}}">{{btn.text}}</button>
 </form>

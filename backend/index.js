@@ -68,7 +68,6 @@ app.post('/api/users/login',async(req,res)=>{
 app.post('/api/users/changePass',async(req,res)=>{
   const {oldPassword,newPassword,userId}=req.body
   const result=await userService.changePass(userId,oldPassword,newPassword)
-  console.log(result)
   res.json(result)
 })
 app.post('/api/users/deleteUser',(req,res)=>{
@@ -81,7 +80,7 @@ app.get('/api/bills', verifyToken, async (req, res) => {
   const userId = req.user._id; // Assume `verifyToken` attaches `user` to the request
   try {
       const bills = await userBill.find({ ownerId: userId });
-      res.json({ hasBills: bills.length });
+      res.json({ hasBills: bills });
   } catch (error) {
       console.error('Error fetching bills:', error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -91,6 +90,15 @@ app.post('/api/bills',async(req,res)=>{
   const {billName,balance,ownerId}=req.body
   const result=billService.createUserBill(billName,balance,ownerId)
   res.json(result)
+})
+app.post("/api/bills/transfer",async(req,res)=>{
+  const{biller,reciever,recieverIban,amount,reason,more}=req.body
+  const correctReciever=await billService.checkReciver(reciever,recieverIban)
+  if(correctReciever.error){
+    return res.json(correctReciever)
+  }
+  return res.json(await billService.transfer(biller,recieverIban,amount,reason,more))
+
 })
 
 

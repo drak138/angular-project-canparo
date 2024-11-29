@@ -20,7 +20,7 @@ export class MyProfileComponent implements OnInit{
  ngOnInit(): void {
   this.billService.checkUserBills().subscribe((response)=>{
     this.userBills=response
-    this.userBills=this.userBills.hasBills
+    this.userBills=this.userBills.hasBills.length
   })
  }
 

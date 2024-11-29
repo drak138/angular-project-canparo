@@ -8,6 +8,14 @@ interface userBill{
   billName:string;
   balance:number
 }
+interface transfer{
+  userBill:userBill;
+  recieverName:string;
+  IBAN:string;
+  amount:number;
+  reason:number;
+  more:number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +50,19 @@ export class BillService {
         return response.hasBills
       })
     )
+  }
+  transfer(transfer:transfer):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/transfer`,transfer).pipe(
+      tap((response:any)=>{
+        if(response.error){
+          throw new Error(response.error);
+        }else{
+          console.log(response)
+          return response
+        }
+      }),catchError((error)=>{
+      return throwError(() => error)
+    })
+  )
   }
 }

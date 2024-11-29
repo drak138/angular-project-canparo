@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     this.userService.errorIn$.subscribe((errorIn)=>{
       this.errorMessage=errorIn
+      setTimeout(() => {
+        this.errorMessage = ""
+      }, 1500);
     })
   }
 @ViewChild("loginForm") form: NgForm|undefined

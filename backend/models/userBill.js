@@ -16,6 +16,9 @@ const userBillSchema= new Schema({
         minimum: 50,
         description: "must be a number and at least 50"
     },
+    transferHistory:[{
+        type:Object
+    }],
     ownerId:{
         type:Types.ObjectId,
         ref:'User'

@@ -19,6 +19,9 @@ errorMessage=""
 ngOnInit(): void {
   this.userService.errorIn$.subscribe((errorIn)=>{
     this.errorMessage=errorIn
+    setTimeout(() => {
+      this.errorMessage = ""
+    }, 1500);
   })
 }
 

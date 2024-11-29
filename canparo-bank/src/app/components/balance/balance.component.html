@@ -3,17 +3,17 @@
       <section class="balance-hero">
         <section class="balance">
           <div class="balance-container">
-            <h2>РАЗПЛАЩАТЕЛНА СМЕТКА:</h2>
-            <p>NАЛИЧНОСТ: <span class="card-balance">57.90</span> <span>BGN</span></p>
-            <p>IBAN: <span class="card-iban">{{ iban }}</span></p>
+            <h2>{{selectedAccountData.billName}}:</h2>
+            <p>NАЛИЧНОСТ: <span class="card-balance">{{ selectedAccountData.balance }}</span> <span>BGN</span></p>
+            <p>IBAN: <span class="card-iban">{{ selectedAccountData.IBAN }}</span></p>
           </div>
           <div class="choose-account">
             <form method="GET">
               <label for="account-options">ИЗБЕРЕТЕ ВАШАТА СМЕТКА</label>
-              <select name="account-options" class="account-options" id="account-options">
-                @for(accounts of accounts; track $index){
-                <option [value]="accounts.iban">
-                  {{ accounts.name }}; {{ accounts.iban }}; {{ accounts.balance }}
+              <select name="account-options" class="account-options" id="account-options" [(ngModel)]="selectedAccount" (change)="onAccountChange()">
+                @for(account of accounts; track $index){
+                <option [value]="account.IBAN">
+                  {{ account.billName }}; {{ account.IBAN }}; лв {{ account.balance }}
                 </option>
               }
               </select>

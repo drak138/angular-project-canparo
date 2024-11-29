@@ -12,13 +12,13 @@ import { ErrComponent } from '../err/err.component';
   templateUrl: './change-pass.component.html',
   styleUrl: './change-pass.component.css'
 })
-export class ChangePassComponent implements OnInit{
+export class ChangePassComponent{
   errorMessage=""
-  ngOnInit(): void {
-    this.userService.errorIn$.subscribe((errorIn)=>{
-      this.errorMessage=errorIn
-    })
-  }
+  // ngOnInit(): void {
+  //   this.userService.errorIn$.subscribe((errorIn)=>{
+  //     this.errorMessage=errorIn
+  //   })
+  // }
 
   constructor(private userService:userService,private router:Router){}
   @ViewChild("changePassForm") form: NgForm|undefined
@@ -33,8 +33,10 @@ export class ChangePassComponent implements OnInit{
         this.router.navigate(["auth/login"])
       },
       (error) => {
-        console.log(error)
         this.errorMessage = error || 'Failed to change password.';
+        setTimeout(() => {
+          this.errorMessage = ""
+        }, 1500);
       }
     )
   }
