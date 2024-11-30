@@ -20,10 +20,10 @@
             </form>
           </div>
           <div class="card-actions">
-            <a routerLink="/card/transfer">
+            <button (click)="navigateToTransfer()">
               <i style="font-size: 40px" class="fa-solid fa-money-bill-transfer"></i>
               <p>Създаване на превод</p>
-            </a>
+            </button>
             <div class="card-share">
               <button
                 class="share-button"
@@ -94,7 +94,7 @@
           </div>
         }
           </div>
-          <!-- <app-transfers class="transfer-list"></app-transfers> -->
+
         </section>
       </section>
     </div>

@@ -1,7 +1,6 @@
 import { Component,HostListener, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common'
-import { TransfersComponent } from './transfers/transfers.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ShareService } from './share.service';
 import { BillService } from '../../services/bill.service';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +8,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-balance',
   standalone: true,
-  imports: [TransfersComponent,RouterLink,CommonModule,FormsModule],
+  imports: [RouterLink,CommonModule,FormsModule],
   providers:[ShareService,BillService],
   templateUrl: './balance.component.html',
   styleUrl: './balance.component.css'
@@ -26,7 +25,7 @@ export class BalanceComponent implements OnInit{
   selectedAccount: string = ''; 
   selectedAccountData: any = {};
   private subscription: Subscription = new Subscription();
-  constructor(private billService:BillService){}
+  constructor(private billService:BillService,private router:Router){}
 
   ngOnInit(): void {
     const accountSub=this.billService.checkUserBills().subscribe((response)=>{
@@ -49,6 +48,12 @@ export class BalanceComponent implements OnInit{
     this.billService.getHistory("All",this.selectedAccountData.IBAN).subscribe((response)=>{
       this.transferHistory=response
       console.log(this.transferHistory)
+    })
+  }
+
+  navigateToTransfer(){
+    this.router.navigate(["/card/transfer"],{
+      queryParams: { selectedIBAN: this.selectedAccountData.IBAN },
     })
   }
 

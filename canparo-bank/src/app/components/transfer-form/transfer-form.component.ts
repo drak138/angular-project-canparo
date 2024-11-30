@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { BillService } from '../../services/bill.service';
 import { FormsModule } from '@angular/forms';
 import { ErrComponent } from '../err/err.component';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-transfer-form',
@@ -21,15 +23,28 @@ export class TransferFormComponent {
   selectedAccount: string = ''; 
   selectedAccountData: any = {};
   private subscription: Subscription = new Subscription();
-  constructor(private billService:BillService,private cdr:ChangeDetectorRef){}
+  constructor(private billService:BillService,private route: ActivatedRoute,){}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      const selectedIBAN = params['selectedIBAN'];
     const accountSub=this.billService.checkUserBills().subscribe((response)=>{
       this.accounts=response.hasBills
-      this.selectedAccount = this.accounts[0].IBAN;
-      this.selectedAccountData = { ...this.accounts[0] };
+      if (selectedIBAN && this.accounts.some((acc) => acc.IBAN === selectedIBAN)) {
+        // If selectedIBAN exists, use it
+        this.selectedAccount = selectedIBAN;
+        this.selectedAccountData = this.accounts.find(
+          (account) => account.IBAN === selectedIBAN
+        );
+      } else if (this.accounts.length > 0) {
+        // Otherwise, default to the first account
+        this.selectedAccount = this.accounts[0].IBAN;
+        this.selectedAccountData = { ...this.accounts[0] };
+      }
     })
+    
     this.subscription.add(accountSub);
+  })
   }
 
   onAccountChange() {
