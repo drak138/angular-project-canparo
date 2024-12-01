@@ -1,8 +1,16 @@
 <main>
     <section class="create-hero cards-hero">
-        <form class="create-form" [formGroup]="form">
+        <form class="create-form" #createCardForm="ngForm" (submit)="createCardHandler()">
+          <label for="account-options">ИЗБЕРЕТЕ ВАШАТА СМЕТКА</label>
+          <select name="account" class="account-options" id="account-options" [(ngModel)]="selectedAccount" (change)="onAccountChange()">
+            @for(account of accounts; track $index){
+            <option [value]="account.IBAN">
+              {{ account.billName }}; {{ account.IBAN }}; лв {{ account.balance }}
+            </option>
+          }
+          </select>
         <label for="card-model">Модел на картата</label>
-        <select name="card-model" id="card-model">
+        <select name="model" id="card-model" [(ngModel)]="selectedModel" (change)="onModelChange()">
             @for(card of Models; track $index){
             <option [value]="card.model">
                 {{card.model}}
@@ -11,22 +19,19 @@
         </select>
 
         <label for="card-type">Вид на картата</label>
-        <select formControlName="cardType">
+        <select name="type" id="card-type" [(ngModel)]="selectedType" (change)="onTypeChange()">
             @for(card of Types; track $index){
-            <option  [value]="card.type">
+            <option  [value]="card.type" >
               {{ card.type }}
             </option>
         }
           </select>
         
           <!-- Conditionally show the credit amount input -->
-           @if(form.get('cardType')?.value==='Credit'){
-          <div>
+          <div *ngIf="selectedType === 'Credit'">
             <label class="creditAmount" for="creditAmount">Месечен Кредит:</label>
-            <input type="number" formControlName="creditAmount" id="creditAmount">
+            <input type="number" name="creditAmount" id="creditAmount" [(ngModel)]="creditAmount">
           </div>
-        }
-
         <button class="create-card-btn">Създай карта</button>
         </form>
     </section>
