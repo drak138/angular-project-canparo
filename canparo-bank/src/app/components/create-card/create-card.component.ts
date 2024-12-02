@@ -84,9 +84,9 @@ createCardHandler(){
   if(this.form?.value.creditAmount<100){
     return alert("Сума за кредит трябва да е над 100")
   }
-  // this.cardService.createCard(this.form?.value).subscribe((response)=>{
-  //   console.log(response)
-  // })
+  this.cardService.createCard(this.form?.value).subscribe((response)=>{
+    this.router.navigate(["/card/myCards"])
+  })
 }
   // Enable/disable creditAmount based on cardType selection
   // this.form.get('cardType')?.valueChanges.subscribe((value) => {

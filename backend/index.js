@@ -7,6 +7,7 @@ import { userService } from "./userService.js";
 import verifyToken from "./middleware/auth.js";
 import  {billService}  from "./billService.js";
 import userBill from "./models/userBill.js";
+import  {cardService}  from "./cardService.js";
 
 
 const app = express();
@@ -105,6 +106,19 @@ app.get("/api/bills/history",verifyToken,async(req,res)=>{
   const IBAN=req.headers.iban
   console.log(IBAN)
   return res.json(await billService.getHistory(filter,IBAN))
+})
+app.post("/api/card",async(req,res)=>{
+  const{cardInfo,userId}=req.body
+  const{account,model,type,creditAmount}=cardInfo
+  const cardNumber=await cardService.createCardNumber(model)
+  const PIN=cardService.createPin()
+  const CVV=cardService.createCVV()
+  const expireDate=cardService.createExpireDate()
+  res.json(cardService.createCard(type,expireDate,cardNumber,CVV,account,PIN,userId,model,creditAmount))
+})
+app.get("/api/card",verifyToken,async(req,res)=>{
+  const IBAN=req.headers.iban
+  return res.json(await cardService.getCards(IBAN))
 })
 
 

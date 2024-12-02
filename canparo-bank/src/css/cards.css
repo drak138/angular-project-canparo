@@ -12,6 +12,7 @@
     padding-top: 28px;
 }
 .card-container{
+    display: grid;
     justify-content: space-evenly;
     min-width: 428.33px;
     max-width: 428.33px;
@@ -19,10 +20,10 @@
     width: 35vw;
     padding: 1rem;
     border: white solid 4px;
-    display: flex;
     gap: 10px;
     }
 .cards-list{
+    grid-row-start: 2;
     padding-right: 10px;
     max-height: 405px;
     overflow-x: hidden;
@@ -72,6 +73,7 @@
     color: red;
 }
 .create-card{
+    grid-row-start: 2;
     width: min-content;
     font-size: 1.2rem;
     text-align: center;
