@@ -128,6 +128,10 @@ app.post("/api/card/delete",verifyToken,async(req,res)=>{
   const {cardId}=req.body
   return res.json(await cardService.deleteCard(cardId))
 })
+app.post("/api/card/update",verifyToken,async(req,res)=>{
+  const {cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit}=req.body
+  return res.json(await cardService.updateCard(cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit))
+})
 
 
 const PORT = 3000;

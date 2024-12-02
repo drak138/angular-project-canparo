@@ -10,15 +10,15 @@
             <p class="card-status active">Aктивна</p>
         </div>
         <button (click)="deactivateHandler()" class="deactivate-btn"><i class="fa-solid fa-x"></i><p>Деактиривай карта</p></button>
-        <form class="limit-form" action="" method="POST">
+        <form class="limit-form" #updateCard="ngForm" (ngSubmit)="updateCardHandler()">
             <label class="24h-limit" for="withdraw-limit">24ч. лимит за теглене в брой</label>
-            <p><input type="number" id="withdraw-limit" name="withdraw-limit" class="limit" value="{{cardDetails.dayWithDrawLimit}}"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
+            <p><input type="number" #dayWithDrawLimitBox id="withdraw-limit" name="dayWithDrawLimit" class="limit" [(ngModel)]="cardDetails.dayWithDrawLimit" #dayWithDrawLimit="ngModel" value="{{cardDetails.dayWithDrawLimit}}"> BGN <button (click)="focusInput(dayWithDrawLimitBox,$event)"><i class="fa-solid fa-pen-to-square"></i></button></p>
             
             <label class="24h-limit" for="transfer-limit">24ч. лимит за плащане при търговец</label>
-            <p><input type="number" id="transfer-limit" name="transfer-limit" class="limit" value="{{cardDetails.dayLimitWithTrader}}"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
+            <p><input type="number" #dayLimitWithTraderBox id="transfer-limit" name="dayLimitWithTrader" class="limit" [(ngModel)]="cardDetails.dayLimitWithTrader" #dayLimitWithTrader="ngModel" value="{{cardDetails.dayLimitWithTrader}}"> BGN <button (click)="focusInput(dayLimitWithTraderBox,$event)"><i class="fa-solid fa-pen-to-square"></i></button></p>
             
             <label class="24h-limit" for="cash-limit">Общ 24ч. лимит</label>
-            <p><input type="number" id="cash-limit" name="cash-limit" class="limit" value="{{cardDetails.dayLimit}}"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
+            <p><input type="number" id="cash-limit" #dayLimitBox name="dayLimit" class="limit" [(ngModel)]="cardDetails.dayLimit" #dayLimit="ngModel" value="{{cardDetails.dayLimit}}"> BGN <button (click)="focusInput(dayLimitBox,$event)"><i class="fa-solid fa-pen-to-square"></i></button></p>
 
             <button class="confirm-change">Потвърди промяната</button>
         </form>

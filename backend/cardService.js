@@ -109,6 +109,9 @@ export const cardService={
     },
     async deleteCard(cardId){
         return await Card.findByIdAndDelete(cardId)
+    },
+    async updateCard(cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit){
+        return await Card.findByIdAndUpdate(cardId,{dayLimit,dayLimitWithTrader,dayWithDrawLimit},{runValidators:true})
     }
     
 }

@@ -59,4 +59,18 @@ export class CardService {
     };
     return this.http.post(`${this.apiUrl}/delete`,body)
   }
+  updateCard(cardId:string,formData:any){
+    const token=this.userService.getCookie('authToken')
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
+    const body = {
+      Authorization:token,
+      cardId,
+      ...formData
+    };
+    console.log(body)
+    return this.http.post(`${this.apiUrl}/update`,body)
+
+  }
 }
