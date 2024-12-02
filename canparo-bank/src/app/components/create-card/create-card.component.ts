@@ -4,7 +4,7 @@ import { ReactiveFormsModule,FormsModule, NgForm } from '@angular/forms';
 import { Component, ViewChild} from '@angular/core';
 import { BillService } from '../../services/bill.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-card',
@@ -39,21 +39,30 @@ selectedTypeData:any={}
 
 creditAmount: number = 0;
 private subscription: Subscription = new Subscription();
-constructor(private billService:BillService,private router:Router,private cardService:CardService){}
+constructor(private billService:BillService,private router:Router,private cardService:CardService,private route: ActivatedRoute){}
 
 ngOnInit(): void {
-  const accountSub=this.billService.checkUserBills().subscribe((response)=>{
-    this.accounts=response.hasBills
-    this.selectedAccount = this.accounts[0].IBAN;
-    this.selectedAccountData = { ...this.accounts[0] };
+    this.route.queryParams.subscribe((params) => {
+      const selectedIBAN = params['selectedIBAN'];
+    const accountSub=this.billService.checkUserBills().subscribe((response)=>{
+      this.accounts=response.hasBills
+      if (selectedIBAN && this.accounts.some((acc) => acc.IBAN === selectedIBAN)) {
+        this.selectedAccount = selectedIBAN;
+        this.selectedAccountData = this.accounts.find(
+          (account) => account.IBAN === selectedIBAN
+        );
+      } else if (this.accounts.length > 0) {
+        this.selectedAccount = this.accounts[0].IBAN;
+        this.selectedAccountData = { ...this.accounts[0] };
+      }
+    })
+    this.subscription.add(accountSub);
   })
   this.selectedModel=this.Models[0].model
   this.selectedModelData=this.Models[0]
 
   this.selectedType=this.Types[0].type
   this.selectedTypeData=this.Types[0]
-
-  this.subscription.add(accountSub);
 }
 onAccountChange() {
   // Find the selected account data

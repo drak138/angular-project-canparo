@@ -31,13 +31,11 @@ export class TransferFormComponent {
     const accountSub=this.billService.checkUserBills().subscribe((response)=>{
       this.accounts=response.hasBills
       if (selectedIBAN && this.accounts.some((acc) => acc.IBAN === selectedIBAN)) {
-        // If selectedIBAN exists, use it
         this.selectedAccount = selectedIBAN;
         this.selectedAccountData = this.accounts.find(
           (account) => account.IBAN === selectedIBAN
         );
       } else if (this.accounts.length > 0) {
-        // Otherwise, default to the first account
         this.selectedAccount = this.accounts[0].IBAN;
         this.selectedAccountData = { ...this.accounts[0] };
       }

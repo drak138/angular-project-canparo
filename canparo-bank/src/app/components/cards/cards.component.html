@@ -6,7 +6,7 @@
                 <select name="account-options" style="width: 17rem;" id="account-options" [(ngModel)]="selectedAccount" (change)="onAccountChange()">
                   @for(account of accounts; track $index){
                   <option [value]="account.IBAN">
-                    {{ account.billName }}; {{ account.IBAN }}; лв {{ account.balance }}
+                    {{ account.billName }};{{ account.IBAN }}
                   </option>
                 }
                 </select>
@@ -23,7 +23,7 @@
         </a>
     }
         </div>
-        <a routerLink="/card/create" class="create-card">Създадете нова карта</a>
+        <a (click)="navigateToCreateCard()" class="create-card">Създадете нова карта</a>
         </div>
     </section>
 </main>

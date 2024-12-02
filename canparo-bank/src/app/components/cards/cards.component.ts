@@ -40,7 +40,9 @@ export class CardsComponent {
     this.selectedAccountData = this.accounts.find(
       (account) => account.IBAN === this.selectedAccount
     );
-
+    this.cardService.getCards(this.selectedAccount).subscribe((response)=>{
+      this.cards=this.maskCardNumbers(response)
+    })
   }
 
   maskCardNumbers(cards: any[]): any[] {
@@ -56,6 +58,11 @@ export class CardsComponent {
       return cardNumber.slice(0, cardNumber.length - 8) + '****' + cardNumber.slice(-4);
     }
     return cardNumber;
+  }
+  navigateToCreateCard(){
+    this.router.navigate(["/card/create"],{
+      queryParams: { selectedIBAN: this.selectedAccountData.IBAN },
+    })
   }
 
   ngOnDestroy(): void {
