@@ -38,7 +38,6 @@ ngOnInit(): void {
         if(!response.token){
           return
         }
-        console.log('User added successfully:', response);
         this.router.navigate(["/home"])
         this.form?.reset()
       },

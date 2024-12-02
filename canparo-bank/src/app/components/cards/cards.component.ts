@@ -53,7 +53,6 @@ export class CardsComponent {
   }
   private maskCardNumber(cardNumber: string): string {
     if (cardNumber.length > 8) {
-      console.log(cardNumber.slice(0, cardNumber.length - 8) + '****' + cardNumber.slice(-4))
       return cardNumber.slice(0, cardNumber.length - 8) + '****' + cardNumber.slice(-4);
     }
     return cardNumber;

@@ -80,12 +80,12 @@ onModelChange() {
 }
 
 @ViewChild("createCardForm")form:NgForm|undefined
-createCardHandler(){
+createCardHandler():void{
   if(this.form?.value.creditAmount<100){
     return alert("Сума за кредит трябва да е над 100")
   }
   this.cardService.createCard(this.form?.value).subscribe((response)=>{
-    this.router.navigate(["/card/myCards"])
+    window.location.href = '/card/myCards'
   })
 }
   // Enable/disable creditAmount based on cardType selection

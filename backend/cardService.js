@@ -94,7 +94,6 @@ export const cardService={
     },
     async createCard(type,expireDate,cardNumber,CVV,IBAN,PIN,ownerId,model,creditAmount){
         const status=true
-        console.log(cardNumber)
         const billId=(await userBill.findOne({IBAN}))._id
         return Card.create({type,expireDate,cardNumber,CVV,status,billId,PIN,ownerId,model,creditAmount})
     },

@@ -34,7 +34,6 @@ export class CardService {
     });
     return this.http.get<any>(this.apiUrl,{headers}).pipe(
       tap((response)=>{
-        console.log(response)
       })
     )
   }

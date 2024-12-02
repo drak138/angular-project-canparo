@@ -47,7 +47,6 @@ export class BalanceComponent implements OnInit{
     );
     this.billService.getHistory("All",this.selectedAccountData.IBAN).subscribe((response)=>{
       this.transferHistory=response
-      console.log(this.transferHistory)
     })
   }
 

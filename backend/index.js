@@ -104,7 +104,6 @@ app.post("/api/bills/transfer",async(req,res)=>{
 app.get("/api/bills/history",verifyToken,async(req,res)=>{
   const filter=req.headers.filter
   const IBAN=req.headers.iban
-  console.log(IBAN)
   return res.json(await billService.getHistory(filter,IBAN))
 })
 app.post("/api/card",async(req,res)=>{

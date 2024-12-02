@@ -49,7 +49,6 @@ export class TransferFormComponent {
 
   onAccountChange() {
     // Find the selected account data
-    console.log(JSON.stringify(this.selectedAccount))
     this.selectedAccountData = this.accounts.find(
       (account) => account.IBAN === this.selectedAccount
     );
