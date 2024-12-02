@@ -1,13 +1,14 @@
 import { Schema,Types,model } from "mongoose";
-import nodemailer from 'nodemailer'
 import bcrypt from 'bcrypt'
 import User from "./users.js";
 import sgMail from '@sendgrid/mail'
+import dotenv from 'dotenv'
+dotenv.config();
 
 
 const SALT_ROUNDS=10
 const img='/backend/1000_F_540998236_9sDc4xxdGOn5bYflNBwVXSdcC46DyfNB.jpg'
-const sendGridKey="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"
+const sendGridKey=process.env.SENDGRID_API_KEY // your Send grid Key
 
 const cardsSchema=new Schema({
     cardNumber:{
@@ -73,7 +74,7 @@ cardsSchema.pre("save", async function (next) {
         const name = `${owner.firstName} ${owner.lastName}`;
         const msg = {
             to: owner.email,
-            from: "preslav.geshev@gmail.com", // Must be a verified sender
+            from: "preslav.geshev@gmail.com", // your Send grid email
             subject: 'Your New Card PIN',
             html:`<html>
       <head>

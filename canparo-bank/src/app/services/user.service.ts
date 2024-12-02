@@ -105,6 +105,9 @@ export class userService {
       const decoded: any = jwtDecode(token);
       const currentTime = Date.now() / 1000; // Current time in seconds
       const isLoggedIn = decoded.exp > currentTime;
+      if(isLoggedIn===false){
+        this.logout()
+      }
       this.loggedInSubject?.next(isLoggedIn)
       return isLoggedIn;// Check if token has expired
     } catch (error) {
