@@ -48,4 +48,15 @@ export class CardService {
     });
     return this.http.get<any>(`http://localhost:3000/api/${cardId}/details`,{headers})
   }
+  deactivateCard(cardId:string):Observable<any>{
+    const token=this.userService.getCookie('authToken')
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
+    const body = {
+      Authorization:token,
+      cardId
+    };
+    return this.http.post(`${this.apiUrl}/delete`,body)
+  }
 }

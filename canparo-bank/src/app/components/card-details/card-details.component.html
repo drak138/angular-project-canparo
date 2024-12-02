@@ -2,22 +2,23 @@
     <section class="cards-hero card-details">
         <div class="details-container">
         <div style="width: 269px; align-self: center;" class="card">
-            <img src="/images/DALL·E 2024-11-02 21.02.31 - A realistic image of a Mastercard issued by Canparo Bank. The card has a sleek and modern design with a metallic blue and white color scheme. It featu.webp" alt="Mastercard Card">
-            <span><span class="card-model">Mastercard</span> <span class="card-type">Credit</span></span>
+            <img *ngIf="cardDetails.model==='MasterCard'" src="/images/DALL·E 2024-11-02 21.02.31 - A realistic image of a Mastercard issued by Canparo Bank. The card has a sleek and modern design with a metallic blue and white color scheme. It featu.webp" alt="Mastercard Card">
+            <img *ngIf="cardDetails.model==='Visa'" src="/images/DALL·E 2024-11-02 21.01.59 - A realistic image of a Visa debit card issued by Canparo Bank. The card has a sleek and modern design with a metallic orange and white color scheme. I.webp" alt="Visa Card">
+            <span><span class="card-model">{{cardDetails.model}}</span> <span class="card-type">{{cardDetails.type}}</span></span>
             <p class="card-date">02/29</p>
-            <p class="card-number">842576*****6935</p>
+            <p class="card-number">{{cardNumber}}</p>
             <p class="card-status active">Aктивна</p>
         </div>
-        <button class="deactivate-btn"><i class="fa-solid fa-x"></i><p>Деактиривай карта</p></button>
+        <button (click)="deactivateHandler()" class="deactivate-btn"><i class="fa-solid fa-x"></i><p>Деактиривай карта</p></button>
         <form class="limit-form" action="" method="POST">
             <label class="24h-limit" for="withdraw-limit">24ч. лимит за теглене в брой</label>
-            <p><input type="number" id="withdraw-limit" name="withdraw-limit" class="limit" value="1000"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
+            <p><input type="number" id="withdraw-limit" name="withdraw-limit" class="limit" value="{{cardDetails.dayWithDrawLimit}}"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
             
             <label class="24h-limit" for="transfer-limit">24ч. лимит за плащане при търговец</label>
-            <p><input type="number" id="transfer-limit" name="transfer-limit" class="limit" value="3000"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
+            <p><input type="number" id="transfer-limit" name="transfer-limit" class="limit" value="{{cardDetails.dayLimitWithTrader}}"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
             
             <label class="24h-limit" for="cash-limit">Общ 24ч. лимит</label>
-            <p><input type="number" id="cash-limit" name="cash-limit" class="limit" value="3000"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
+            <p><input type="number" id="cash-limit" name="cash-limit" class="limit" value="{{cardDetails.dayLimit}}"> BGN <button><i class="fa-solid fa-pen-to-square"></i></button></p>
 
             <button class="confirm-change">Потвърди промяната</button>
         </form>

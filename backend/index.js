@@ -124,6 +124,10 @@ app.get("/api/:cardId/details",verifyToken,async(req,res)=>{
   const cardDetails=await cardService.getDetails(cardId)
   return res.json(cardDetails)
 })
+app.post("/api/card/delete",verifyToken,async(req,res)=>{
+  const {cardId}=req.body
+  return res.json(await cardService.deleteCard(cardId))
+})
 
 
 const PORT = 3000;

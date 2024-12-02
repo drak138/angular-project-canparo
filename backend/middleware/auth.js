@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 const JWT_SECRET='my-Secret-Key'
 
 function verifyToken(req, res, next) {
-    let token = req.headers['authorization']?.slice(1,-1)||req.headers['cookie']?.split("authToken=")[1].slice(1,-1);
+    let token = req.headers['authorization']?.slice(1,-1)||req.headers['cookie']?.split("authToken=")[1].slice(1,-1)||req.body['Authorization']?.slice(1,-1);
 
     jwt.verify(token,JWT_SECRET, (err, user) => {
         if (err) {

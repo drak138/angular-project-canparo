@@ -106,6 +106,9 @@ export const cardService={
     },
     async getDetails(cardId){
         return await Card.findById(cardId)
+    },
+    async deleteCard(cardId){
+        return await Card.findByIdAndDelete(cardId)
     }
     
 }
