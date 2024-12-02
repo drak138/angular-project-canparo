@@ -1,7 +1,8 @@
 <main>
     <section class="slides">
     <ul>
-    <li class="slide-card">
+    <button (click)="navigate('left')" class="nav-button left">⬅</button>
+    <li *ngIf="currentSlide === 0" class="slide-card">
         <section class="credit-card">
         <div class="card-info">
             <h2>Сигурност през цялото време с Canparo Bank.</h2>
@@ -9,7 +10,7 @@
             <a class="crd-btn" routerLink="/card/create">Направи заявка</a>
         </div>
     </section></li>
-    <li class="slide-card">
+    <li *ngIf="currentSlide === 1" class="slide-card">
     <section class="bill-card">
         <div class="card-info">
             <h2>Следете сметките си от дома по всяко време.</h2>
@@ -18,7 +19,7 @@
         </div>
     </section>
 </li>
-<li class="slide-card">
+<li *ngIf="currentSlide === 2" class="slide-card">
     <section class="about-card">
         <div class="card-info">
             <h2>Опознай Canparo Bank.</h2>
@@ -27,6 +28,7 @@
         </div>
     </section>
 </li>
+  <button (click)="navigate('right')" class="nav-button right">➡</button>
     </ul>
     </section>
 </main>
