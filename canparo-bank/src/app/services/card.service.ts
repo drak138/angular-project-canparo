@@ -37,4 +37,15 @@ export class CardService {
       })
     )
   }
+  getCardDetails(cardId:string):Observable<any>{
+    const token=this.userService.getCookie('authToken')
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
+    const headers = new HttpHeaders({
+      Authorization:token,
+      cardId
+    });
+    return this.http.get<any>(`http://localhost:3000/api/${cardId}/details`,{headers})
+  }
 }

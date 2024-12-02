@@ -49,6 +49,18 @@ const cardsSchema=new Schema({
         type:Boolean,
         required:true
     },
+    dayWithDrawLimit:{
+        type:Number,
+        required:true
+    },
+    dayLimitWithTrader:{
+        type:Number,
+        required:true
+    },
+    dayLimit:{
+        type:Number,
+        required:true
+    },
     billId:{
         type:Types.ObjectId,
         ref:"userBills"
@@ -100,7 +112,10 @@ cardsSchema.pre("save", async function (next) {
         };
         sgMail
     .send(msg)
-    .then(() => console.log('Email sent'))
+    .then(async () =>{
+        const hash = await bcrypt.hash(plainPIN.toString(), SALT_ROUNDS);
+        this.PIN = hash; console.log('Email sent')
+    })
     .catch((error) => console.error('Error sending email:', error));
         const hash = await bcrypt.hash(plainPIN.toString(), SALT_ROUNDS);
         this.PIN = hash;

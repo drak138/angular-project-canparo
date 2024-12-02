@@ -95,11 +95,17 @@ export const cardService={
     async createCard(type,expireDate,cardNumber,CVV,IBAN,PIN,ownerId,model,creditAmount){
         const status=true
         const billId=(await userBill.findOne({IBAN}))._id
-        return Card.create({type,expireDate,cardNumber,CVV,status,billId,PIN,ownerId,model,creditAmount})
+        const dayWithDrawLimit=1000
+        const dayLimitWithTrader=1000
+        const dayLimit=1000
+        return Card.create({type,expireDate,cardNumber,CVV,status,billId,PIN,ownerId,model,dayWithDrawLimit,dayLimitWithTrader,dayLimit,creditAmount})
     },
     async getCards(IBAN){
         const billId=(await userBill.findOne({IBAN}))._id
         return await Card.find({billId})
+    },
+    async getDetails(cardId){
+        return await Card.findById(cardId)
     }
     
 }

@@ -119,6 +119,11 @@ app.get("/api/card",verifyToken,async(req,res)=>{
   const IBAN=req.headers.iban
   return res.json(await cardService.getCards(IBAN))
 })
+app.get("/api/:cardId/details",verifyToken,async(req,res)=>{
+  const cardId=req.params.cardId
+  const cardDetails=await cardService.getDetails(cardId)
+  return res.json(cardDetails)
+})
 
 
 const PORT = 3000;
