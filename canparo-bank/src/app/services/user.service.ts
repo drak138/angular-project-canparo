@@ -139,7 +139,7 @@ export class userService {
         })
       )
   }
-  getUserId():void{
+  getUserId(){
     const token = this.getCookie('authToken');
     if (!token) {
       this.loggedInSubject?.next(false);

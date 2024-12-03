@@ -112,6 +112,9 @@ export const cardService={
     },
     async updateCard(cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit){
         return await Card.findByIdAndUpdate(cardId,{dayLimit,dayLimitWithTrader,dayWithDrawLimit},{runValidators:true})
+    },
+    async getUserCards(ownerId){
+        return await Card.find({ownerId})
     }
     
 }

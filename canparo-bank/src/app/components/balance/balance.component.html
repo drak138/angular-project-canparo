@@ -90,7 +90,7 @@
               
               <p *ngIf="transfer.transferType === 'incoming'">Сума: <span style="color: green;">+{{transfer.amount}}</span> BGN</p>
               <p *ngIf="transfer.transferType !== 'incoming'">Сума: <span style="color: red;"> -{{transfer.amount}}</span> BGN</p>
-              <p>IBAN: ${{transfer.IBAN}}</p>
+              <p>IBAN: {{transfer.IBAN}}</p>
           </div>
         }
           </div>

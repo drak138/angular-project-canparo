@@ -7,11 +7,18 @@
     height: fit-content;
     max-width: 500px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    display: flex;
+    display: grid;
     flex-direction: column;
 }
+.bills-container form{
+    grid-row-start: 1;
+    grid-column-start: 1;
+}
 .register-bill{
-    align-self: end;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    align-self: center;
+    margin-left: 4px;
     padding: 3px;
     color: green;
     width: fit-content;
@@ -20,6 +27,8 @@
     margin-bottom: 10px;
 }
 .bills-list{
+    grid-row-start: 2;
+    grid-column-start: 1;
     padding-right: 10px;
     display: flex;
     flex-direction: column;

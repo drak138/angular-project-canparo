@@ -1,6 +1,16 @@
 <main>
     <section class="bills-hero cards-hero">
         <div class="bills-container">
+            <form method="GET">
+                <label for="account-options">ИЗБЕРЕТЕ ВАШАТА СМЕТКА</label>
+                <select name="account-options" style="width: 17rem;" id="account-options" [(ngModel)]="selectedAccount" (change)="onAccountChange()">
+                  @for(account of accounts; track $index){
+                  <option [value]="account.IBAN">
+                    {{ account.billName }};{{ account.IBAN }};лв {{account.balance}}
+                  </option>
+                }
+                </select>
+              </form>
             <a class="register-bill" routerLink="/card/createBill">Регистрирайте сметка</a>
             <div class="bills-list">
                 <div class="bill">

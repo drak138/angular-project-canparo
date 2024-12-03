@@ -1,3 +1,4 @@
+import { CardService } from './../../services/card.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { userService } from '../../services/user.service';
@@ -7,20 +8,26 @@ import { BillService } from '../../services/bill.service';
   selector: 'app-my-profile',
   standalone: true,
   imports: [RouterLink],
-  providers:[userService,BillService],
+  providers:[userService,BillService,CardService],
   templateUrl: './my-profile.component.html',
   styleUrl: './my-profile.component.css'
 })
 export class MyProfileComponent implements OnInit{
 
   userBills:any=0
+  userCards:any=0
 
- constructor(private userService:userService,private router:Router,private billService:BillService){}
+ constructor(private userService:userService,private router:Router,
+  private billService:BillService,private cardService:CardService
+ ){}
 
  ngOnInit(): void {
   this.billService.checkUserBills().subscribe((response)=>{
     this.userBills=response
     this.userBills=this.userBills.hasBills.length
+  })
+  this.cardService.getUserCards().subscribe((response)=>{
+    this.userCards=response.length
   })
  }
 

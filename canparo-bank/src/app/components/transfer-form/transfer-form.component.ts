@@ -40,7 +40,6 @@ export class TransferFormComponent {
         this.selectedAccountData = { ...this.accounts[0] };
       }
     })
-    
     this.subscription.add(accountSub);
   })
   }

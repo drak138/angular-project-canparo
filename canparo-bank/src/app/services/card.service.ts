@@ -71,6 +71,21 @@ export class CardService {
     };
     console.log(body)
     return this.http.post(`${this.apiUrl}/update`,body)
-
+  }
+  getUserCards():Observable<any>{
+    const token=this.userService.getCookie('authToken')
+    const userId=this.userService.getUserId()
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
+    const headers = new HttpHeaders({
+      Authorization:token,
+      userId
+    });
+        return this.http.get(`${this.apiUrl}/user`,{headers}).pipe(
+      tap((response:any)=>{
+        return response
+      })
+    )
   }
 }

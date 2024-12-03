@@ -132,6 +132,10 @@ app.post("/api/card/update",verifyToken,async(req,res)=>{
   const {cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit}=req.body
   return res.json(await cardService.updateCard(cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit))
 })
+app.get("/api/card/user",verifyToken,async(req,res)=>{
+  const{userid}=req.headers
+  return res.json(await cardService.getUserCards(userid))
+})
 
 
 const PORT = 3000;
