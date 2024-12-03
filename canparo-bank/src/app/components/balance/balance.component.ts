@@ -49,6 +49,21 @@ export class BalanceComponent implements OnInit{
       this.transferHistory=response
     })
   }
+  showAll(){
+    this.billService.getHistory("All",this.selectedAccountData.IBAN).subscribe((response)=>{
+      this.transferHistory=response
+    })
+  }
+  showPositive(){
+    this.billService.getHistory("incoming",this.selectedAccountData.IBAN).subscribe((response)=>{
+      this.transferHistory=response
+    })
+  }
+  showNegative(){
+    this.billService.getHistory("outgoing",this.selectedAccountData.IBAN).subscribe((response)=>{
+      this.transferHistory=response
+    })
+  }
 
   navigateToTransfer(){
     this.router.navigate(["/card/transfer"],{

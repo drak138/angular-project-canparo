@@ -73,11 +73,11 @@
         </section>
         <section class="balance-movement">
           <div class="transfer-filters">
-            <button >Show All Transfers</button>
-            <button>
+            <button (click)="showAll()" >Show All Transfers</button>
+            <button (click)="showPositive()"> 
               Show Positive Transfers
             </button>
-            <button >
+            <button (click)="showNegative()">
               Show Negative Transfers
             </button>
           </div>

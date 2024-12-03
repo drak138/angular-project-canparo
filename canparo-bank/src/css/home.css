@@ -46,7 +46,7 @@ a:hover{
   header nav {
     background-color:orange;
     color: #fff;
-    padding: 1rem 0;
+    padding: 4px 0 0rem 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -63,6 +63,7 @@ a:hover{
     margin: 0 auto;
 }
 nav ul {
+  align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
