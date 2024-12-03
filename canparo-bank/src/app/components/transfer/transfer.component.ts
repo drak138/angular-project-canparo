@@ -25,7 +25,6 @@ export class TransferComponent {
     this.transferHandler = this.transferHandler.bind(this);
   }
 
-  @ViewChild('transferForm')form:NgForm|undefined
   transferHandler(formValues: any): void {
     this.billService.transfer(formValues).subscribe(
       (response)=>{

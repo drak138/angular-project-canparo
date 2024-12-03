@@ -19,6 +19,13 @@ const userBillSchema= new Schema({
     transferHistory:[{
         type:Object
     }],
+    recurringTransactions:[{
+        toIBAN: { type: String, required: true },
+            amount: { type: Number, required: true },
+            nextExecution: { type: Date, required: true },
+            reason:{type: String, required: true },
+            intervalInDays: { type: Number, default: 30 },
+    }],
     ownerId:{
         type:Types.ObjectId,
         ref:'User'

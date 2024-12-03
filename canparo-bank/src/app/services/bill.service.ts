@@ -80,4 +80,17 @@ export class BillService {
       })
     )
   }
+  createMonthlyBill(transfer:transfer):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/createBill`,transfer).pipe(
+      tap((response:any)=>{
+        if(response.error){
+          throw new Error(response.error);
+        }else{
+          return response
+        }
+      }),catchError((error)=>{
+      return throwError(() => error)
+    })
+  )
+  }
 }

@@ -26,7 +26,7 @@ const cardsSchema=new Schema({
         required:true
     },
     PIN:{
-        type:Number,
+        type:String,
         required:true
     },
     expireDate:{
@@ -113,12 +113,10 @@ cardsSchema.pre("save", async function (next) {
         sgMail
     .send(msg)
     .then(async () =>{
-        const hash = await bcrypt.hash(plainPIN.toString(), SALT_ROUNDS);
-        this.PIN = hash; console.log('Email sent')
     })
     .catch((error) => console.error('Error sending email:', error));
-        const hash = await bcrypt.hash(plainPIN.toString(), SALT_ROUNDS);
-        this.PIN = hash;
+    const hash = await bcrypt.hash(this.PIN.toString(), SALT_ROUNDS);
+    this.PIN=hash
 });
 
 const Card=model("Card",cardsSchema)

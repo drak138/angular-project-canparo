@@ -8,6 +8,7 @@ import verifyToken from "./middleware/auth.js";
 import  {billService}  from "./billService.js";
 import userBill from "./models/userBill.js";
 import  {cardService}  from "./cardService.js";
+import "./cronJobs.js";
 
 
 const app = express();
@@ -105,6 +106,14 @@ app.get("/api/bills/history",verifyToken,async(req,res)=>{
   const filter=req.headers.filter
   const IBAN=req.headers.iban
   return res.json(await billService.getHistory(filter,IBAN))
+})
+app.post("/api/bills/createBill",async(req,res)=>{
+  const{biller,reciever,recieverIban,amount,reason,more}=req.body
+  const correctReciever=await billService.checkReciver(reciever,recieverIban)
+  if(correctReciever.error){
+    return res.json(correctReciever)
+  }
+  return res.json(await billService.createBill(biller,recieverIban,amount,reason,more))
 })
 app.post("/api/card",async(req,res)=>{
   const{cardInfo,userId}=req.body

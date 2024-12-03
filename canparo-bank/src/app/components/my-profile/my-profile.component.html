@@ -1,8 +1,8 @@
 <main>
     <section class="cards-hero profile-hero">
         <div class="profile-container">
-            <p class="username">Преслав Гешев</p>
-            <p class="email">bgmingteam&#64;gmail.com</p>
+            <p class="username">{{userName}}</p>
+            <p class="email">{{userEmail}}</p>
             <a routerLink="/card/balance" class="my-bank-acc">Брой сметки:{{userBills}}</a>
             <a routerLink='/card/myCards' class="my-cards">Брой карти:{{userCards}}</a>
             <button class="delete-btn" (click)="showDelete()">Изтриване на профила</button>

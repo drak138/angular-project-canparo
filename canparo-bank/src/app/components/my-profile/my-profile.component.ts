@@ -16,6 +16,8 @@ export class MyProfileComponent implements OnInit{
 
   userBills:any=0
   userCards:any=0
+  userEmail:string=''
+  userName:string=''
 
  constructor(private userService:userService,private router:Router,
   private billService:BillService,private cardService:CardService
@@ -29,6 +31,10 @@ export class MyProfileComponent implements OnInit{
   this.cardService.getUserCards().subscribe((response)=>{
     this.userCards=response.length
   })
+  const user=this.userService.getUsers()
+  this.userEmail=user.email
+  this.userName=user.name
+
  }
 
   logOutHandler(){

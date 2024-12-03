@@ -38,8 +38,13 @@ export class userService {
   }
 
   // Get all items
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getUsers(){
+    const token = this.getCookie('authToken');
+    if (!token) {
+      return 
+    } 
+    const decoded:any=jwtDecode(token)
+    return decoded
   }
   
 

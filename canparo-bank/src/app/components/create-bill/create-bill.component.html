@@ -1,5 +1,8 @@
 <main>
+    @if(errorMessage){
+        <app-err [errorMessage]="errorMessage"></app-err>
+    }
     <section class="create-hero cards-hero">
-        <app-transfer-form [btn]="btn" [formClass]="'create-form create-bill-form'"></app-transfer-form>
+        <app-transfer-form [btn]="btn" [formClass]="'create-form create-bill-form'" [formName]="'crateBillForm'" [formEvent]="createBillHandler"></app-transfer-form>
     </section>
 </main>

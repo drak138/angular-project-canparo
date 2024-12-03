@@ -72,5 +72,50 @@ generateRandomString(length, characters) {
       history=history.filter((el)=>el.transferType===filter)
       return history
     }
+  },
+  async createBill(biller,toIBAN,amount,reason,more){
+    const bill = await userBill.findOne({"IBAN":biller.IBAN});
+    const nextExecution = new Date();
+    nextExecution.setDate(nextExecution.getDate() + 30);
+    const billData={
+      toIBAN,
+        amount,
+        nextExecution,
+        reason,
+        intervalInDays: 30
+    }
+    return userBill.findOneAndUpdate({"IBAN":biller.IBAN},{$push:{recurringTransactions:billData}},{runValidators:true})
+  },
+
+  async executeRecurringTransactions(){
+    const now = new Date();
+
+    // Find bills with due recurring transactions
+    const bills = await userBill.find({
+        "recurringTransactions.nextExecution": { $lte: now },
+    });
+
+    for (const bill of bills) {
+        for (const transaction of bill.recurringTransactions) {
+            if (transaction.nextExecution <= now) {
+                const { amount, toIBAN,reason,more } = transaction;
+
+                // Check if there are enough funds
+                if (bill.balance >= amount) {
+                    this.transfer({IBAN:bill.IBAN},toIBAN,amount,reason,more)
+
+                    console.log(`Transferred ${amount} from ${bill.IBAN} to ${toIBAN}`);
+                } else {
+                    console.log(`Insufficient funds for IBAN: ${bill.IBAN}`);
+                }
+
+                // Update next execution date
+                transaction.nextExecution.setDate(
+                    transaction.nextExecution.getDate() + transaction.intervalInDays
+                );
+            }
+        }
+    }
   }
+
 }

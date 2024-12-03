@@ -47,9 +47,11 @@ export const userService={
         return await User.findByIdAndDelete(userId)
     },
     createToken(user){
+        const name=`${user.firstName} ${user.lastName}`
         const payLoad={
             _id:user._id,
-            email:user.email
+            email:user.email,
+            name
         }
         const token=jwt.sign(payLoad,JWT_SECRET,{expiresIn: '1h'})
         return token
