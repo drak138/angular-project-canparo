@@ -116,4 +116,18 @@ export class BillService {
     }
     return this.http.post(`${this.apiUrl}/${billId}/delete`,body)
   }
+  deleteUserBill(billId:string|undefined):Observable<any>{
+    if(!billId){
+      return throwError(() => new Error("Error getting bill"));
+    }
+    const token=this.userService.getCookie('authToken')
+    if(!token){
+      return throwError(() => new Error("User is not authenticated"));
+    }
+    const body={
+      Authorization:token,
+      billId,
+    }
+    return this.http.post(`http://localhost:3000/api/${billId}/delete`,body)
+  }
 }

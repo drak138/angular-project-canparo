@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 export interface account{
+  _id:string;
   IBAN:string;
   balance:number;
   billName:string
@@ -40,7 +41,9 @@ export class BalanceComponent implements OnInit{
   ]
 
   selectedAccount: string = ''; 
-  selectedAccountData: account|undefined = {  IBAN:'',
+  selectedAccountData: account|undefined = {
+    _id:"",
+    IBAN:'',
     balance:123,
     billName:""};
   private subscription: Subscription = new Subscription();
@@ -103,6 +106,10 @@ export class BalanceComponent implements OnInit{
     this.router.navigate(["/card/transfer"],{
       queryParams: { selectedIBAN: this.selectedAccountData.IBAN },
     })
+  }
+  deleteUserBill(billId:string|undefined){
+    this.billService.deleteUserBill(billId).subscribe()
+    window.location.reload()
   }
 
   showShareOptions = false;

@@ -24,6 +24,7 @@ export class TransferFormComponent {
 
   selectedAccount: string = ''; 
   selectedAccountData: account|undefined = {
+    _id:"",
       IBAN:"",
       balance:0,
       billName:"string"

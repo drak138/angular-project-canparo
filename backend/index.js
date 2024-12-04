@@ -124,6 +124,10 @@ app.post("/api/bills/:billId/delete",verifyToken,async(req,res)=>{
   const {billId}=req.body
   return await billService.deleteBill(billId)
 })
+app.post("/api/:billId/delete",verifyToken,async(req,res)=>{
+  const {billId}=req.body
+  return await billService.deleteUserBill(billId)
+})
 app.post("/api/card",async(req,res)=>{
   const{cardInfo,userId}=req.body
   const{account,model,type,creditAmount}=cardInfo

@@ -24,6 +24,10 @@
               <i style="font-size: 40px" class="fa-solid fa-money-bill-transfer"></i>
               <p>Създаване на превод</p>
             </button>
+            <button (click)="deleteUserBill(selectedAccountData?._id)">
+              <i style="font-size: 40px;" class="fa-solid fa-circle-xmark"></i>
+              <p>Изтриване на сметката</p>
+            </button>
             <div class="card-share">
               <button
                 class="share-button"

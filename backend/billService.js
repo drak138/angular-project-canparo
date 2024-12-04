@@ -122,6 +122,9 @@ generateRandomString(length, characters) {
   },
   async deleteBill(billId){
     return await userBill.updateOne({"recurringTransactions._id":billId},{ $pull: { recurringTransactions: { _id: billId }}})
+  },
+  async deleteUserBill(billId){
+    return await userBill.findByIdAndDelete(billId)
   }
 
 }

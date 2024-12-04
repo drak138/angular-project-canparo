@@ -29,7 +29,9 @@ Types=[
 ]
 
 selectedAccount: string = ''; 
-selectedAccountData: account|undefined = {IBAN:"",
+selectedAccountData: account|undefined = {
+  _id:"",
+  IBAN:"",
   balance:0,
   billName:""};
 

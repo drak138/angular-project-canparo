@@ -47,6 +47,10 @@ border: white solid 4px;
 .card-actions a{
     text-align: center;
 }
+.card-share{
+    text-align: center;
+    width: 98px;
+}
 .share-options {
     display: none;
     text-align: center;

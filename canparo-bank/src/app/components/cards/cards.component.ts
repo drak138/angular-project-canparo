@@ -27,7 +27,9 @@ export class CardsComponent {
   cards:card[]=[]
 
   selectedAccount: string = ''; 
-  selectedAccountData: account|undefined = {IBAN:"",
+  selectedAccountData: account|undefined = {
+    _id:"",
+    IBAN:"",
     balance:0,
     billName:""};
   private subscription: Subscription = new Subscription();

@@ -27,6 +27,7 @@ export class MyBillsComponent implements OnInit{
   selectedAccount: string = ''; 
   bills:bill[]=[]
   selectedAccountData: account|undefined = {
+    _id:"",
     IBAN:"",
   balance:0,
   billName:""

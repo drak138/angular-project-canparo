@@ -100,10 +100,10 @@ cardsSchema.pre("save", async function (next) {
         <table role="presentation" width="100%" cellspacing="0" cellpadding="10" style="border: none;">
           <tr>
             <td style="text-align: center; padding: 20px; background-image: url('https://as1.ftcdn.net/v2/jpg/05/40/99/82/1000_F_540998236_9sDc4xxdGOn5bYflNBwVXSdcC46DyfNB.jpg');background-size: cover; background-position: center center; padding: 30px; text-align: center; color: white;">
-              <p>Dear ${name},</p>
-              <p>Your card PIN is: <strong>${plainPIN}</strong></p>
-              <p>Please keep it secure.</p>
-              <p>Best regards,<br>Your Company</p>
+              <p style="color:orange">Dear ${name},</p>
+              <p style="color:orange">Your card PIN is: <strong>${plainPIN}</strong></p>
+              <p style="color:orange">Please keep it secure.</p>
+              <p style="color:orange">Best regards,<br>Your Company</p>
             </td>
           </tr>
         </table>
