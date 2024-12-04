@@ -116,6 +116,12 @@ generateRandomString(length, characters) {
             }
         }
     }
+  },
+  async getUserBills(IBAN){
+    return (await userBill.findOne({IBAN})).recurringTransactions
+  },
+  async deleteBill(billId){
+    return await userBill.updateOne({"recurringTransactions._id":billId},{ $pull: { recurringTransactions: { _id: billId }}})
   }
 
 }

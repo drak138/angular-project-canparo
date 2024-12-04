@@ -43,7 +43,7 @@ export class CreateBillComponent {
     this.billService.createMonthlyBill(formValues).subscribe(
       (response)=>{
       this.errorMessage = ''; // Clear any existing error
-      this.router.navigate(["/home"])
+      this.router.navigate(["/card/bills"])
     },(error)=>{
       this.errorMessage = error || 'Failed to change password.';
       setTimeout(() => {

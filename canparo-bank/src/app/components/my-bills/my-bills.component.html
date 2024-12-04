@@ -13,26 +13,13 @@
               </form>
             <a class="register-bill" routerLink="/card/createBill">Регистрирайте сметка</a>
             <div class="bills-list">
+                @for(bill of bills; track $index){
                 <div class="bill">
-                    <span>Име на сметката: <span class="bill-type">A1 телефон</span></span>
-                    <span>Дата за плащане:<span class="bill-date">14/07</span></span>
-                    <a routerLink="/card/1/delete" class="delete-bill">Заличи сметката</a>
+                    <span>Име на сметката: <span class="bill-type">{{bill.reason}}</span></span>
+                    <span>Дата за плащане:<span class="bill-date">{{ bill.nextExecution | date: 'dd/MM/yy' }}</span></span>
+                    <a (click)="deleteBillHandler(bill._id)" class="delete-bill">Заличи сметката</a>
                 </div>
-                <div class="bill">
-                    <span>Име на сметката: <span class="bill-type">Vivacom телефон</span></span>
-                    <span>Дата за плащане:<span class="bill-date">14/09</span></span>
-                    <a routerLink="/card/2/delete" class="delete-bill">Заличи сметката</a>
-                </div>
-                <div class="bill">
-                    <span>Име на сметката: <span class="bill-type">Spotify premium</span></span>
-                    <span>Дата за плащане:<span class="bill-date">12/08</span></span>
-                    <a routerLink="/card/3/delete" class="delete-bill">Заличи сметката</a>
-                </div>
-                <div class="bill">
-                    <span>Име на сметката: <span class="bill-type">Amazon prime</span></span>
-                    <span>Дата за плащане:<span class="bill-date">12/09</span></span>
-                    <a routerLink="/card/4/delete" class="delete-bill">Заличи сметката</a>
-                </div>
+            }
             </div>
         </div>
     </section>

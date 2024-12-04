@@ -81,10 +81,6 @@ export class CardService {
       Authorization:token,
       userId
     });
-        return this.http.get(`${this.apiUrl}/user`,{headers}).pipe(
-      tap((response:any)=>{
-        return response
-      })
-    )
+        return this.http.get(`${this.apiUrl}/user`,{headers})
   }
 }
