@@ -4,6 +4,16 @@ import { CardService } from '../../services/card.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 
+interface details{
+  cardNumber:number;
+  dayLimit:number;
+  dayLimitWithTrader:number;
+  dayWithDrawLimit:number;
+  expireDate:string;
+  model:string;
+  type:string
+}
+
 @Component({
   selector: 'app-card-details',
   standalone: true,
@@ -14,7 +24,14 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class CardDetailsComponent implements OnInit{
   cardId: string | null = '';
-  cardDetails: any = {};
+  cardDetails:details = {cardNumber: 1234567890123456,
+    dayLimit: 5000,
+    dayLimitWithTrader: 10000,
+    dayWithDrawLimit: 2000,
+    expireDate:"08/2024",
+    model:"MastedCard",
+    type:"Credit"
+  };
   cardNumber:string=''
   constructor(private route: ActivatedRoute, private cardService: CardService,private router:Router) {}
   ngOnInit(): void {
@@ -26,7 +43,6 @@ export class CardDetailsComponent implements OnInit{
       this.cardService.getCardDetails(this.cardId).subscribe((details) => {
         this.cardDetails = details;
         this.cardNumber=this.maskCardNumber(this.cardDetails.cardNumber.toString())
-        console.log(this.cardDetails)
       });
     }
   }
@@ -51,7 +67,6 @@ export class CardDetailsComponent implements OnInit{
   }
   @ViewChild("updateCard")form:NgForm|undefined
   updateCardHandler(){
-    console.log(this.form?.value)
     if(this.form?.value.dayWithDrawLimit<1000){
       return alert("24ч. лимит за теглене в брой трябва да е 1000 или повече")
     }

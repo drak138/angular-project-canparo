@@ -5,6 +5,8 @@ import { BillService } from '../../services/bill.service';
 import { FormsModule } from '@angular/forms';
 import { ErrComponent } from '../err/err.component';
 import { ActivatedRoute } from '@angular/router';
+import { account } from '../balance/balance.component';
+import { form } from '../create-bill/create-bill.component';
 
 
 @Component({
@@ -17,11 +19,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TransferFormComponent {
   heck="ubigre"
-  accounts:any[] = [
+  accounts:account[] = [
   ];
 
   selectedAccount: string = ''; 
-  selectedAccountData: any = {};
+  selectedAccountData: account|undefined = {
+      IBAN:"",
+      balance:0,
+      billName:"string"
+  };
   private subscription: Subscription = new Subscription();
   constructor(private billService:BillService,private route: ActivatedRoute,){}
 
@@ -60,10 +66,13 @@ export class TransferFormComponent {
   @Input() formEvent!: (event: any)=> void;
   formValues: any = {};
   
-  handleSubmit(formValues: any): void {
+  handleSubmit(formValues: form): void {
+    if(!this.selectedAccountData){
+      return
+    }
     const { billName, IBAN, balance } = this.selectedAccountData;
     formValues.biller={IBAN,billName,balance}
-    if(formValues.biller.IBAN===formValues.recieverIban){
+    if(formValues.biller.IBAN===formValues.recieverIBAN){
       alert("Не можеш да прехвърлиш към същата сметка")
       return
     }

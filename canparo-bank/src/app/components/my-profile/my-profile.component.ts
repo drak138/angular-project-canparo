@@ -48,7 +48,6 @@ export class MyProfileComponent implements OnInit{
         this.router.navigate(["auth/login"])
       },
       (error) => {
-        console.log(error)
       })
     } else {
     }

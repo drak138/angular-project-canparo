@@ -33,7 +33,6 @@ export class CreateUserBillComponent {
           }
         },
       (error) => {
-        console.log(error)
       }
       )
     }

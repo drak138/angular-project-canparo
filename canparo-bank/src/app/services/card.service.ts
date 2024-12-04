@@ -69,7 +69,6 @@ export class CardService {
       cardId,
       ...formData
     };
-    console.log(body)
     return this.http.post(`${this.apiUrl}/update`,body)
   }
   getUserCards():Observable<any>{

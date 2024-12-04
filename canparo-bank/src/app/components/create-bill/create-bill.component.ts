@@ -5,6 +5,20 @@ import { BillService } from '../../services/bill.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ErrComponent } from '../err/err.component';
+interface biller{
+  IBAN:string;
+  billName:string;
+  balance:number
+}
+
+export interface form{
+amount:number;
+biller:biller;
+more:string;
+reason:string;
+reciever:string;
+recieverIBAN:string
+}
 
 @Component({
   selector: 'app-create-bill',
@@ -25,8 +39,7 @@ export class CreateBillComponent {
     this.createBillHandler = this.createBillHandler.bind(this);
   }
 
-  createBillHandler(formValues: any): void {
-    console.log(this)
+  createBillHandler(formValues: form): void {
     this.billService.createMonthlyBill(formValues).subscribe(
       (response)=>{
       this.errorMessage = ''; // Clear any existing error

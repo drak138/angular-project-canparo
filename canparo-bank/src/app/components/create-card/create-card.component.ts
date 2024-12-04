@@ -5,6 +5,7 @@ import { Component, ViewChild} from '@angular/core';
 import { BillService } from '../../services/bill.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { account } from '../balance/balance.component';
 
 @Component({
   selector: 'app-create-card',
@@ -15,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './create-card.component.css'
 })
 export class CreateCardComponent {
-  accounts:any[] = [
+  accounts:account[] = [
   ];
 
 Models=[
@@ -28,14 +29,16 @@ Types=[
 ]
 
 selectedAccount: string = ''; 
-selectedAccountData: any = {};
+selectedAccountData: account|undefined = {IBAN:"",
+  balance:0,
+  billName:""};
 
 selectedModel:string=''
-selectedModelData:any={}
+selectedModelData:{model:string}|undefined={model:""}
 
 
 selectedType:string=''
-selectedTypeData:any={}
+selectedTypeData:{type:string}|undefined={type:""}
 
 creditAmount: number = 0;
 private subscription: Subscription = new Subscription();

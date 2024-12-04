@@ -5,6 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { BillService } from '../../services/bill.service';
 import { ErrComponent } from '../err/err.component';
 import { Router } from '@angular/router';
+import { form } from '../create-bill/create-bill.component';
 
 @Component({
   selector: 'app-transfer',
@@ -25,7 +26,7 @@ export class TransferComponent {
     this.transferHandler = this.transferHandler.bind(this);
   }
 
-  transferHandler(formValues: any): void {
+  transferHandler(formValues: form): void {
     this.billService.transfer(formValues).subscribe(
       (response)=>{
       this.errorMessage = ''; // Clear any existing error

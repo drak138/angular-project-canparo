@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink,Router } from '@angular/router';
 import { BillService } from '../../services/bill.service';
 import { FormsModule } from '@angular/forms';
+import { account } from '../balance/balance.component';
 
 @Component({
   selector: 'app-my-bills',
@@ -13,10 +14,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './my-bills.component.css'
 })
 export class MyBillsComponent implements OnInit{
-  accounts:any[] = [
+  accounts:account[] = [
   ];
   selectedAccount: string = ''; 
-  selectedAccountData: any = {};
+  selectedAccountData: account|undefined = {
+    IBAN:"",
+  balance:0,
+  billName:""
+  };
   private subscription: Subscription = new Subscription();
   constructor(private billService:BillService,private router:Router){}
   ngOnInit(): void {
@@ -38,6 +43,5 @@ export class MyBillsComponent implements OnInit{
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    console.log('Component destroyed, subscriptions cleaned up.');
   }
 }

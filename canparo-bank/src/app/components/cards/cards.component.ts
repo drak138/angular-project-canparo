@@ -5,6 +5,14 @@ import { BillService } from '../../services/bill.service';
 import { CardService } from '../../services/card.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { account } from '../balance/balance.component';
+interface card{
+  _id:string;
+  cardNumber:number|string;
+  expireDate:string;
+  model:string;
+  type:string;
+}
 
 @Component({
   selector: 'app-cards',
@@ -14,12 +22,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './cards.component.css'
 })
 export class CardsComponent {
-  accounts:any[] = [
+  accounts:account[] = [
   ];
-  cards:any[]=[]
+  cards:card[]=[]
 
   selectedAccount: string = ''; 
-  selectedAccountData: any = {};
+  selectedAccountData: account|undefined = {IBAN:"",
+    balance:0,
+    billName:""};
   private subscription: Subscription = new Subscription();
   constructor(private billService:BillService,private router:Router,private cardService:CardService){}
   ngOnInit(): void {
@@ -45,7 +55,7 @@ export class CardsComponent {
     })
   }
 
-  maskCardNumbers(cards: any[]): any[] {
+  maskCardNumbers(cards: card[]): card[] {
     return cards.map(card => {
       return {
         ...card, // Preserve other properties of the card
@@ -61,12 +71,11 @@ export class CardsComponent {
   }
   navigateToCreateCard(){
     this.router.navigate(["/card/create"],{
-      queryParams: { selectedIBAN: this.selectedAccountData.IBAN },
+      queryParams: { selectedIBAN: this.selectedAccountData?.IBAN },
     })
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    console.log('Component destroyed, subscriptions cleaned up.');
   }
 }

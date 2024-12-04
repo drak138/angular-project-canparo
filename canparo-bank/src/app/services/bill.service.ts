@@ -5,16 +5,17 @@ import { userService } from './user.service';
 import { jwtDecode } from 'jwt-decode';
 
 interface userBill{
+  IBAN:string;
   billName:string;
   balance:number
 }
 interface transfer{
-  userBill:userBill;
-  recieverName:string;
-  IBAN:string;
+  biller:userBill;
+  reciever:string;
+  recieverIBAN:string;
   amount:number;
-  reason:number;
-  more:number;
+  reason:string;
+  more:string;
 }
 
 @Injectable({
