@@ -1,8 +1,7 @@
-import { catchError, Observable, of, tap, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, Observable, of, tap, throwError} from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { userService } from './user.service';
-import { jwtDecode } from 'jwt-decode';
 
 interface userBill{
   IBAN:string;
@@ -33,6 +32,7 @@ export class BillService {
     }
     return this.http.post<any>(this.apiUrl,{billName:userBill.billName,balance:userBill.balance,ownerId:userId}).pipe(
       tap((response:any)=>{
+        console.log(response)
       }),catchError((error)=>{
         return throwError(() => error);
       })

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { TransferFormComponent } from '../transfer-form/transfer-form.component';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BillService } from '../../services/bill.service';
 import { ErrComponent } from '../err/err.component';
 import { Router } from '@angular/router';

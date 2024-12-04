@@ -7,7 +7,6 @@ dotenv.config();
 
 
 const SALT_ROUNDS=10
-const img='/backend/1000_F_540998236_9sDc4xxdGOn5bYflNBwVXSdcC46DyfNB.jpg'
 const sendGridKey=process.env.SENDGRID_API_KEY // your Send grid Key
 
 const cardsSchema=new Schema({

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component,Input,ChangeDetectorRef } from '@angular/core';
+import { Component,Input} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { BillService } from '../../services/bill.service';
 import { FormsModule } from '@angular/forms';

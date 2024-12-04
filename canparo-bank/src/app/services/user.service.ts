@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable,of, tap, BehaviorSubject, map, catchError, throwError } from 'rxjs';
+import { Observable,of, tap, BehaviorSubject, catchError, throwError } from 'rxjs';
 
 interface registerData{
   firstName:String;

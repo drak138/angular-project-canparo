@@ -90,7 +90,7 @@ app.get('/api/bills', verifyToken, async (req, res) => {
 });
 app.post('/api/bills',async(req,res)=>{
   const {billName,balance,ownerId}=req.body
-  const result=billService.createUserBill(billName,balance,ownerId)
+  const result=await billService.createUserBill(billName,balance,ownerId)
   res.json(result)
 })
 app.post("/api/bills/transfer",async(req,res)=>{

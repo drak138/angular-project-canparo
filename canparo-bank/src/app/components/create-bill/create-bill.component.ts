@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { TransferFormComponent } from '../transfer-form/transfer-form.component';
 import { BillService } from '../../services/bill.service';
 import { Router } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ErrComponent } from '../err/err.component';
 interface biller{
   IBAN:string;

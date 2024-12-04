@@ -1,5 +1,5 @@
 import { userService } from './../../services/user.service';
-import { Component,OnInit,ViewChild } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { FormsModule,NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrComponent } from '../err/err.component';
@@ -14,11 +14,6 @@ import { ErrComponent } from '../err/err.component';
 })
 export class ChangePassComponent{
   errorMessage=""
-  // ngOnInit(): void {
-  //   this.userService.errorIn$.subscribe((errorIn)=>{
-  //     this.errorMessage=errorIn
-  //   })
-  // }
 
   constructor(private userService:userService,private router:Router){}
   @ViewChild("changePassForm") form: NgForm|undefined

@@ -27,7 +27,8 @@ export class CreateUserBillComponent {
       this.billService.createUserBill(this.form?.value).subscribe(
         (Response)=>{
           if(this.cardChoice){
-            this.router.navigate(["/card/create"])
+            console.log(Response)
+            this.router.navigate(["/card/create"],{queryParams: { selectedIBAN: Response.IBAN}})
           }else{
             this.router.navigate(["/home"])
           }
