@@ -27,13 +27,13 @@
         </article>
 
         <article class="email-contact">
-            <form class="email-form" method="POST">
+            <form class="email-form" #contactForm="ngForm" (ngSubmit)="contactHandler()">
                 <div class="email-input-container">
-                <input placeholder="Имейл адрес" type="text" id="email" name="email">
+                <input placeholder="Имейл адрес" type="text" id="email" name="email" ngModel #email="ngModel">
 
-                <input placeholder="Заглавие" type="text" id="theme" name="theme">
+                <input placeholder="Заглавие" type="text" id="theme" name="theme" ngModel #theme="ngModel">
                 </div>
-                <textarea  placeholder="Съобщение" name="content" id="content" cols="20" rows="10"></textarea>
+                <textarea  placeholder="Съобщение" name="content" id="content" ngModel #content="ngModel" cols="20" rows="10"></textarea>
 
                 <button type="submit">Изпрати имейл</button>
             </form>

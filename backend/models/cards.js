@@ -109,8 +109,7 @@ cardsSchema.pre("save", async function (next) {
       </body>
     </html>`,
         };
-        sgMail
-    .send(msg)
+        sgMail.send(msg)
     .then(async () =>{
     })
     .catch((error) => console.error('Error sending email:', error));

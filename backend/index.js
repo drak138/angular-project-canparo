@@ -9,6 +9,7 @@ import  {billService}  from "./billService.js";
 import userBill from "./models/userBill.js";
 import  {cardService}  from "./cardService.js";
 import "./cronJobs.js";
+import { contactService } from "./contactService.js";
 
 
 const app = express();
@@ -157,6 +158,10 @@ app.post("/api/card/update",verifyToken,async(req,res)=>{
 app.get("/api/card/user",verifyToken,async(req,res)=>{
   const{userid}=req.headers
   return res.json(await cardService.getUserCards(userid))
+})
+app.post("/api/send-email",async(req,res)=>{
+  const{email,theme,content}=req.body
+  return contactService.sendEmail(email,theme,content)
 })
 
 
