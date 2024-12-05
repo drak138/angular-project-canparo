@@ -1,3 +1,5 @@
+import { cardService } from "./cardService.js";
+import Card from "./models/cards.js";
 import userBill from "./models/userBill.js";
 
 export const billService={
@@ -127,6 +129,8 @@ generateRandomString(length, characters) {
     return await userBill.updateOne({"recurringTransactions._id":billId},{ $pull: { recurringTransactions: { _id: billId }}})
   },
   async deleteUserBill(billId){
+    const cards=await Card.find({billId})
+    cards.map(card=>cardService.deleteCard(card))
     return await userBill.findByIdAndDelete(billId)
   }
 
