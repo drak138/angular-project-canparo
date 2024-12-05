@@ -63,6 +63,15 @@ export class MyBillsComponent implements OnInit{
       }));
     })
   }
+  registerBill(){
+    if(!this.selectedAccountData){
+      return
+    }
+    this.router.navigate(["/card/createBill"],{
+      queryParams: { selectedIBAN: this.selectedAccountData.IBAN },
+    })
+  }
+
   deleteBillHandler(billId:string){
     this.billService.deleteBill(billId).subscribe((response)=>{
     })

@@ -11,7 +11,7 @@
                 }
                 </select>
               </form>
-            <a class="register-bill" routerLink="/card/createBill">Регистрирайте сметка</a>
+            <a class="register-bill" (click)="registerBill()">Регистрирайте сметка</a>
             <div class="bills-list">
                 @for(bill of bills; track $index){
                 <div class="bill">

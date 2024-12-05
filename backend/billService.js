@@ -74,7 +74,6 @@ generateRandomString(length, characters) {
     }
   },
   async createBill(biller,toIBAN,amount,reason,more){
-    const bill = await userBill.findOne({"IBAN":biller.IBAN});
     const nextExecution = new Date();
     nextExecution.setDate(nextExecution.getDate() + 30);
     const billData={
@@ -92,14 +91,17 @@ generateRandomString(length, characters) {
 
     // Find bills with due recurring transactions
     const bills = await userBill.find({
-        "recurringTransactions.nextExecution": { $lte: now },
+        "recurringTransactions.nextExecution": { $gte: now },
     });
 
     for (const bill of bills) {
         for (const transaction of bill.recurringTransactions) {
-            if (transaction.nextExecution <= now) {
-                const { amount, toIBAN,reason,more } = transaction;
-
+            if (transaction.nextExecution >= now) {
+                const { amount, toIBAN,reason,more,_id } = transaction;
+                if(!await userBill.findOne({"IBAN":toIBAN})){
+                  this.deleteBill(_id)
+                }
+                else{
                 // Check if there are enough funds
                 if (bill.balance >= amount) {
                     this.transfer({IBAN:bill.IBAN},toIBAN,amount,reason,more)
@@ -114,6 +116,7 @@ generateRandomString(length, characters) {
                     transaction.nextExecution.getDate() + transaction.intervalInDays
                 );
             }
+          }
         }
     }
   },
