@@ -2,7 +2,7 @@
 <header>
     @if(isLoggedIn){
         <nav>
-            <ul>
+            <ul class="logged">
                 <li><a class="navButtons" routerLink="/"><img style="width: 47px;" src="images/6d0c5212-8de8-412c-b3a2-4b344c6a3aed.webp" alt=""></a></li>
                 <li><a class="navButtons" routerLink="/card/balance">Моят баланс</a></li>
                 <li><a class="navButtons" routerLink="/card/transfer">Превод</a></li>
@@ -10,10 +10,10 @@
                 <li><a class="navButtons" routerLink="/card/bills">Сметки</a></li>
                 <li><a class="navButtons" routerLink="/card/createUserBill">Създаване на сметка</a></li>
             </ul>
-            <a class="navButtons" style="padding-right: 1rem;" routerLink="/auth/myAccount">Моят профил</a>
+            <a class="navButtons" style="padding-right: 7%;" routerLink="/auth/myAccount">Моят профил</a>
     </nav>
     }@else{<nav>
-        <ul>
+        <ul class="guest">
             <li><a class="navButtons" routerLink="/"><img style="width: 47px;" src="images/6d0c5212-8de8-412c-b3a2-4b344c6a3aed.webp" alt=""></a></li>
             <li><a class="navButtons" routerLink="/about">За нас</a></li>
             <li><a class="navButtons" routerLink="/about/partners">Нашите партньори</a></li>
