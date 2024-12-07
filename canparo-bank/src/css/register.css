@@ -49,3 +49,8 @@
     text-decoration: none;
     color: #4CAF50;
 }
+@media (max-width: 480px) {
+    .register-form{
+        margin-top: 25%;
+    }
+}

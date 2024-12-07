@@ -48,3 +48,45 @@
     width: -webkit-fill-available;
     height: 17rem;
 }
+@media (max-width: 480px){
+    .intro h2{
+        font-size: 70%;
+    }
+    .intro p{
+        font-size: 76%;
+    }
+    .benefits h2{
+        font-size: 90%;
+    }
+    .benefits ul{
+        font-size: 74%;
+    }
+    .team h2{
+        font-size: 81%;
+    }
+    .team p{
+        font-size: 90%;
+    }
+    .company-history h2{
+        font-size: 70%;
+    }
+    .company-history p{
+        font-size: 61.5%;
+    }
+    .partners h2{
+        font-size: 68%;
+    }
+    .partners p{
+        font-size: 62%;
+    }
+    .about-hero article a{
+        font-size: 11px;
+    }
+    .our-contacts h2{
+        font-size: 86%;
+    }
+    .our-contacts p{
+        font-size: 75%;
+    }
+
+}
