@@ -147,9 +147,10 @@ app.get("/api/:cardId/details",verifyToken,async(req,res)=>{
   const cardDetails=await cardService.getDetails(cardId)
   return res.json(cardDetails)
 })
-app.post("/api/card/deactivate",verifyToken,async(req,res)=>{
-  const {cardId}=req.body
-  return res.json(await cardService.deleteCard(cardId))
+app.delete("/api/card/delete",verifyToken,async(req,res)=>{
+  const {cardid}=req.headers
+
+  return res.json(await cardService.deleteCard(cardid))
 })
 app.post("/api/card/update",verifyToken,async(req,res)=>{
   const {cardId,dayLimit,dayLimitWithTrader,dayWithDrawLimit}=req.body

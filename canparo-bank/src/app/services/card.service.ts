@@ -53,11 +53,11 @@ export class CardService {
     if(!token){
       return throwError(() => new Error("User is not authenticated"));
     }
-    const body = {
+    const headers = new HttpHeaders({
       Authorization:token,
       cardId
-    };
-    return this.http.post(`${this.apiUrl}/deactivate`,body)
+    });
+    return this.http.delete(`${this.apiUrl}/delete`,{headers})
   }
   updateCard(cardId:string,formData:any){
     const token=this.userService.getCookie('authToken')
