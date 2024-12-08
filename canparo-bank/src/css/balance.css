@@ -44,6 +44,9 @@ border: white solid 4px;
     display: flex;
     justify-content:space-evenly
 }
+.fa-money-bill-transferm,.fa-circle-xmark,.fa-share{
+    font-size: 40px;
+}
 .card-actions a{
     text-align: center;
 }
@@ -138,4 +141,59 @@ border: white solid 4px;
 }
 .transfer-item p{
     color: orange;
+}
+@media (max-width: 480px) {
+    .balance{
+        padding: 0.5rem;
+    }
+    .balance-container{
+        font-size: 70%;
+    }
+    .card-iban{
+        font-size: 75%;
+    }
+    .choose-account form label{
+        font-size: 80%;
+    }
+    .account-options{
+        font-size: 40%;
+    }
+    .card-actions{
+        margin-right: 30%;
+        gap: 6%;
+    }
+    .fa-money-bill-transfer,.fa-circle-xmark{
+        font-size: 16px;
+    }
+    .card-actions button p{
+        font-size: 70%;
+    }
+    .fa-circle-xmark{
+        font-size: 16px;
+    }
+    .fa-share{
+        font-size: 20px;
+    }
+    .share-options{
+        left: 12%;
+        margin-top: 26px;
+    }
+    .share-options a, .share-options button{
+        font-size: 12px;
+    }
+    .fa-whatsapp{
+        font-size: 15px;
+    }
+    .balance-movement{
+        padding: 1rem;
+    }
+    .transfer-filters{
+        gap: 6%;
+    }
+    .transfer-filters button {
+        font-size: 60%;
+    }
+    .transfer-item{
+        font-size: 62%;
+    }
 }
