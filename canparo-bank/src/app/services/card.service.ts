@@ -57,7 +57,7 @@ export class CardService {
       Authorization:token,
       cardId
     };
-    return this.http.post(`${this.apiUrl}/delete`,body)
+    return this.http.post(`${this.apiUrl}/deactivate`,body)
   }
   updateCard(cardId:string,formData:any){
     const token=this.userService.getCookie('authToken')
