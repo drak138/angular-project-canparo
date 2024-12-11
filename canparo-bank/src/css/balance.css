@@ -44,7 +44,7 @@ border: white solid 4px;
     display: flex;
     justify-content:space-evenly
 }
-.fa-money-bill-transferm,.fa-circle-xmark,.fa-share{
+.fa-money-bill-transfer,.fa-circle-xmark,.fa-share{
     font-size: 40px;
 }
 .card-actions a{
