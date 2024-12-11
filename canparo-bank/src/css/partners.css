@@ -30,7 +30,7 @@
     margin: 15px 0;
     font-size: 1.2rem;
 }
-@media (min-height: 910px){
+@media (min-width: 1570px)and  (min-height: 910px){
     .partners-hero{
         height: -webkit-fill-available;
     }

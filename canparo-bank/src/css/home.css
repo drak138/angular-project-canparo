@@ -280,7 +280,7 @@ footer p {
     padding: 0.5rem;
   }
 }
-@media (min-height: 910px){
+@media (min-width: 1570px)and  (min-height: 910px){
   main{
     height: 91%;
   }

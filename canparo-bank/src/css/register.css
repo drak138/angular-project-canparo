@@ -54,7 +54,7 @@
         margin-top: 25%;
     }
 }
-@media (min-height: 910px){
+@media (min-width: 1570px)and  (min-height: 910px){
     .register-form{
         margin-top: 50px;
     }
