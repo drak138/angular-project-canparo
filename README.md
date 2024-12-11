@@ -17,23 +17,21 @@
 
 // front-end functunality
 
-User can access contacts,about,partners without registration if he tries to access other parts he is redirected to login
+9.User can access contacts,about,partners without registration if he tries to access other parts he is redirected to login
 
-Once registered user has basic functionality to check his profile but unless he has a bill he is resticted. If user tries to enter a page where a bill is required
+10.Once registered user has basic functionality to check his profile but unless he has a bill he is resticted. If user tries to enter a page where a bill is required
 
 he is redirected to create one where he can choose if he want's to create a card. If he does he is redirected to create one. Once created user is free to all functionality of the site.
 
-Logged in user can't access login or register page and is instead redirected to home.
+11.Logged in user can't access login or register page and is instead redirected to home.
 
-User with a bill can make transfers to other users if their bill and user name is correct. The last 20 transfers are saved in the user bill history.
+12.User with a bill can make transfers to other users if their bill and user name is correct. The last 20 transfers are saved in the user bill history.
 
-A user can make an automatic payment that is payed every month to a desired user with a desired amount he can delete that reacurringTransaction any time.
+13.A user can make an automatic payment that is payed every month to a desired user with a desired amount he can delete that reacurringTransaction any time.
 
-Once a transaction is made it will be shown in the user transfer history.
+14.Once a transaction is made it will be shown in the user transfer history.
 
-If the reciever IBAN suddenly dissapears the reacurringTransaction is canceled and is deleted from the user bill (in the app i have reversed the logic so instead of the transaction
-
-being lower
+15.If the reciever IBAN suddenly dissapears the reacurringTransaction is canceled and is deleted from the user bill (in the app i have reversed the logic so instead of the transaction being lower
 
 than current date i have made it higher for test purposes in backend file cronJobs.js change cron.schedule from ("0 0 * * ") to ("/1 * * * *") so the transaction happens every minute)
 

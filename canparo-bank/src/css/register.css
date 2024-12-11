@@ -54,3 +54,11 @@
         margin-top: 25%;
     }
 }
+@media (min-height: 910px){
+    .register-form{
+        margin-top: 50px;
+    }
+    .register-hero{
+        height: 91vh;
+    }
+}

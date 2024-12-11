@@ -49,3 +49,8 @@
     text-decoration: none;
     color: #4CAF50;
 }
+@media (min-height: 910px){
+    .login-hero{
+        height: 91vh;
+    }
+}

@@ -9,7 +9,7 @@ export const BillGuard: CanActivateFn = async (route, state) => {
   const isLoggedIn = authService.isLoggedIn()
   if (isLoggedIn) {
     const hasBills = await billService.checkUserBills().toPromise();
-    if (hasBills?.hasBills===0) {
+    if (hasBills?.hasBills.length===0) {
       // Redirect to create-bill page if the user has no bills
       router.navigate(['card/createUserBill']);
       return false;

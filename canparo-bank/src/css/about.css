@@ -90,3 +90,8 @@
     }
 
 }
+@media (min-height: 910px){
+    .about-hero{
+        height: -webkit-fill-available;
+    }
+  }
