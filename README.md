@@ -1,15 +1,19 @@
 1.npm install in backend
 
-2.setup account in SendGrid
+2.create a .env file and create a SENDGRID_API_KEY="your SendGrid API key"
 
-3.create a API key and save it for later
+3.setup account in SendGrid
 
-create a .env file and create a SENDGRID_API_KEY="your SendGrid API key"
-5.run back-end with server with npm test in backend
+4.create a API key and place it in SENDGRID_API_KEY
 
-6.npm install in canparo-bank
+//NOTE if when running the backend can't connect to the server that is due to change in node.js change from localhost to 0.0.0.0
+5. Start your MongoDb and mongosh
 
-7.run front-end server with ng serve in canparo-bank
+6.run back-end with server with npm test in backend
+
+7.npm install in canparo-bank
+
+8.run front-end server with ng serve in canparo-bank
 
 // front-end functunality
 
@@ -33,16 +37,16 @@ being lower
 
 than current date i have made it higher for test purposes in backend file cronJobs.js change cron.schedule from ("0 0 * * ") to ("/1 * * * *") so the transaction happens every minute)
 
-15.User can delete the bill from the balance tab
+16.User can delete the bill from the balance tab
 
-16.When user creates card he can make it debit or credit this has no effect on the site but it will show different depending on if it is visa or mastercard
+17.When user creates card he can make it debit or credit this has no effect on the site but it will show different depending on if it is visa or mastercard
 
-17.When card is created he will be send an email with the card pin since it will be hashed in the back end.
+18.When card is created he will be send an email with the card pin since it will be hashed in the back end.
 
-18.If the bill the card was created on is deleted the card is deleted with is as well.
+19.If the bill the card was created on is deleted the card is deleted with is as well.
 
-19.User can update card information and also delete the card if he wants to.
+20.User can update card information and also delete the card if he wants to.
 
-20.In my profile user can check all info about his profile(username,email,bills he has on his name, cards he has on his name, he can delete his account change his password,or loggout.)
+21.In my profile user can check all info about his profile(username,email,bills he has on his name, cards he has on his name, he can delete his account change his password,or loggout.)
 
-21.Every user will automaticaly be logged out after 1 hour in which case his cookies will be deleted and he is requred to login again.
+22.Every user will automaticaly be logged out after 1 hour in which case his cookies will be deleted and he is requred to login again.
