@@ -53,6 +53,9 @@
     .register-form{
         margin-top: 25%;
     }
+    .register-hero{
+        height: 91vh;
+    }
 }
 @media (min-width: 1570px)and  (min-height: 910px){
     .register-form{
