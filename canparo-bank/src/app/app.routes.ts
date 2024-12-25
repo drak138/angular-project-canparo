@@ -38,7 +38,9 @@ export const routes: Routes = [{
     {path:'card/createBill',component:CreateBillComponent,title:"Create Bill",canActivate:[AuthGuard,BillGuard]},
     {path:'card/createUserBill',component:CreateUserBillComponent,title:"Create Youre Bill",canActivate:[AuthGuard]},
     {path:'card/create',component:CreateCardComponent,title:"Create Card",canActivate:[AuthGuard,BillGuard]},
-    {path:'card/transfer',component:TransferComponent,title:"Transfer Page",canActivate:[AuthGuard,BillGuard]}
+    {path:'card/transfer',component:TransferComponent,title:"Transfer Page",canActivate:[AuthGuard,BillGuard]},
+    {path:'**',redirectTo:'/home'}
+    
 
 ];
     

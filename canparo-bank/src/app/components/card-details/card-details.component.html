@@ -5,7 +5,7 @@
             <img *ngIf="cardDetails.model==='MasterCard'" src="/images/DALL·E 2024-11-02 21.02.31 - A realistic image of a Mastercard issued by Canparo Bank. The card has a sleek and modern design with a metallic blue and white color scheme. It featu.webp" alt="Mastercard Card">
             <img *ngIf="cardDetails.model==='Visa'" src="/images/DALL·E 2024-11-02 21.01.59 - A realistic image of a Visa debit card issued by Canparo Bank. The card has a sleek and modern design with a metallic orange and white color scheme. I.webp" alt="Visa Card">
             <span><span class="card-model">{{cardDetails.model}}</span> <span class="card-type">{{cardDetails.type}}</span></span>
-            <p class="card-date">02/29</p>
+            <p class="card-date">{{cardDetails.expireDate}}</p>
             <p class="card-number">{{cardNumber}}</p>
             <p class="card-status active">Aктивна</p>
         </div>
